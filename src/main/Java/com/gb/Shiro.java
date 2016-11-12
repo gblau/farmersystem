@@ -57,13 +57,19 @@ public class Shiro {
         bean.setFilters(filters);
 
         Map<String, String> chains = new HashMap();
-        chains.put("/login", "anon");
+        chains.put("/css/**","anon");
+        chains.put("/js/**","anon");
+        chains.put("/fonts/**","anon");
+        chains.put("/images/**","anon");
+        chains.put("/*","anon");
+        /*chains.put("/login", "anon");
+        chains.put("/myblog/index", "anon");
         chains.put("/unauthor", "anon");
         chains.put("/logout", "logout");
-        chains.put("/base/**", "anon");
-        chains.put("/css/**", "anon");
-        chains.put("/layer/**", "anon");
-        chains.put("/**", "authc,perms");
+        chains.put("/base*//**", "anon");
+        chains.put("/css*//**", "anon");
+        chains.put("/layer*//**", "anon");
+        chains.put("*//**", "authc,perms");*/
         bean.setFilterChainDefinitionMap(chains);
         return bean;
     }

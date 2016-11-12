@@ -3,15 +3,26 @@ package com.gb.service;
 import com.gb.dao.DataAccessObject;
 import com.gb.service.interfaces.BaseService;
 
+import java.util.List;
+
 /**
  * Created by gblau on 2016-11-12.
  */
 public abstract class BlogService<T> implements BaseService<T> {
     private DataAccessObject<T> dao;
 
-    @Override
-    public void setBaseMapper(DataAccessObject dao) {
+    public void setDataAccessObject(DataAccessObject<T> dao) {
         this.dao = dao;
+    }
+
+    @Override
+    public T findByPrimaryKey(int id) {
+        return dao.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<T> findAllElements() {
+        return dao.selectAllElements();
     }
 
     @Override
@@ -22,26 +33,6 @@ public abstract class BlogService<T> implements BaseService<T> {
     @Override
     public int insert(T record) {
         return dao.insert(record);
-    }
-
-    @Override
-    public int insertSelective(T record) {
-        return dao.insertSelective(record);
-    }
-
-    @Override
-    public T selectByPrimaryKey(int id) {
-        return dao.selectByPrimaryKey(id);
-    }
-
-    @Override
-    public int updateByPrimaryKeySelective(T record) {
-        return dao.updateByPrimaryKeySelective(record);
-    }
-
-    @Override
-    public int updateByPrimaryKeyWithBLOBs(T record) {
-        return dao.updateByPrimaryKeyWithBLOBs(record);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.gb.service;
 
-import com.gb.dao.DataAccessObject;
 import com.gb.dao.UserDataAccessObject;
 import com.gb.model.User;
 import com.gb.service.interfaces.UserService;
@@ -15,23 +14,23 @@ import java.util.Set;
  */
 @Service
 public class BlogUserService extends BlogService<User> implements UserService {
-    private UserDataAccessObject userDao;
+    private UserDataAccessObject dao;
 
     @Autowired
+    public void setBaseMapper() {
+        super.setDataAccessObject(dao);
+    }
+
     @Override
-    public void setBaseMapper(DataAccessObject dao) {
-        super.setBaseMapper(dao);
+    public User findByUsername(String username) {
+        return dao.selectByUsername(username);
     }
 
     public Set<String> findRoles(int id) {
-        return null;
+        return dao.selectRoles(id);
     }
 
     public Set<String> findPermissions(int id) {
-        return null;
-    }
-
-    public List<String> findPermissionUrl(String principal) {
-        return null;
+        return dao.selectPermissions(id);
     }
 }
