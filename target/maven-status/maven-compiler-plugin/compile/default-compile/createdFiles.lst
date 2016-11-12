@@ -1,0 +1,5 @@
+com\gb\Shiro.class
+com\gb\common\UserRealm.class
+com\gb\service\UserService.class
+com\gb\Application.class
+com\gb\common\URLPermissionsFilter.class
