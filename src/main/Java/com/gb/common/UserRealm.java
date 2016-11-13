@@ -1,6 +1,6 @@
 package com.gb.common;
 
-import com.gb.service.BlogUserService;
+import com.gb.service.interfaces.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class UserRealm extends AuthorizingRealm {
     @Autowired
-    private BlogUserService userService;
+    private UserService userService;
 
     @Override
     public String getName() {
@@ -52,16 +52,9 @@ public class UserRealm extends AuthorizingRealm {
         //从token中 获取用户身份信息
         String username = (String) token.getPrincipal();
         //拿username从数据库中查询
-        //....
-        //如果查询不到则返回null
-        if(!username.equals("zhang")){//这里模拟查询不到
+        String password = userService.findPasswordByUsername(username);
+        if(password == null)
             return null;
-        }
-
-        //获取从数据库查询出来的用户密码
-        String password = "123";//这里使用静态数据模拟。。
-
-        //返回认证信息由父类AuthenticatingRealm进行认证
         SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
                 username, password, getName());
 

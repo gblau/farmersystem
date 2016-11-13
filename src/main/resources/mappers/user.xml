@@ -20,8 +20,8 @@
         DELETE FROM user WHERE id=#{id};
     </delete>
     
-    <select id="selectByUsername" parameterType="String" resultType="User">
-        SELECT id,username,password FROM user WHERE username=#{username};
+    <select id="selectByUsername" parameterType="String" resultType="String">
+        SELECT password FROM user WHERE username=#{username};
     </select>
 
     <select id="selectRoles" parameterType="int" resultType="String">

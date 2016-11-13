@@ -6,7 +6,6 @@ import com.gb.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,6 +13,7 @@ import java.util.Set;
  */
 @Service
 public class BlogUserService extends BlogService<User> implements UserService {
+    @Autowired
     private UserDataAccessObject dao;
 
     @Autowired
@@ -22,7 +22,7 @@ public class BlogUserService extends BlogService<User> implements UserService {
     }
 
     @Override
-    public User findByUsername(String username) {
+    public String findPasswordByUsername(String username) {
         return dao.selectByUsername(username);
     }
 

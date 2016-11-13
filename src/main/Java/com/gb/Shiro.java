@@ -61,7 +61,7 @@ public class Shiro {
         chains.put("/js/**","anon");
         chains.put("/fonts/**","anon");
         chains.put("/images/**","anon");
-        chains.put("/*","anon");
+        chains.put("/**","anon");
         /*chains.put("/login", "anon");
         chains.put("/myblog/index", "anon");
         chains.put("/unauthor", "anon");

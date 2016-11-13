@@ -9,7 +9,7 @@ import java.util.Set;
  * Created by gblau on 2016-11-12.
  */
 public interface UserDataAccessObject extends DataAccessObject<User> {
-    User selectByUsername(String username);
+    String selectByUsername(String username);
     Set<String> selectRoles(int id);
     Set<String> selectPermissions(int id);
     List<String> selectPermissionUrl(String principal);
