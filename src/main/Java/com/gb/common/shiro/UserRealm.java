@@ -1,4 +1,4 @@
-package com.gb.common;
+package com.gb.common.shiro;
 
 import com.gb.service.interfaces.UserService;
 import org.apache.shiro.authc.*;

@@ -1,7 +1,8 @@
 package com.gb;
 
-import com.gb.common.URLPermissionsFilter;
-import com.gb.common.UserRealm;
+import com.gb.common.shiro.URLPermissionsFilter;
+import com.gb.common.shiro.UserRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -101,6 +102,19 @@ public class Shiro {
         sessionManager.setDeleteInvalidSessions(true);
         return sessionManager;
     }
+
+    /**
+     * md5生成工具，进行两次MD5转换
+     * @return
+     */
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
+        matcher.setHashAlgorithmName("md5");
+        matcher.setHashIterations(2);
+        matcher.setStoredCredentialsHexEncoded(true);
+        return matcher;
+    }
+
 
     /**
      * @see UserRealm--->AuthorizingRealm
