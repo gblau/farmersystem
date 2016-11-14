@@ -1,6 +1,6 @@
 package com.gb.service;
 
-import com.gb.dao.UserDataAccessObject;
+import com.gb.dao.UserMapper;
 import com.gb.model.User;
 import com.gb.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.util.Set;
 @Service
 public class BlogUserService extends BlogService<User> implements UserService {
     @Autowired
-    private UserDataAccessObject dao;
+    private UserMapper dao;
 
     @Autowired
     public void setBaseMapper() {
