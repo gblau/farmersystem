@@ -22,8 +22,12 @@ public class Mybatis {
     @Bean
     public DataSource dataSource() {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
-        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/blog?useUnicode=true&amp;charaterEncoding=utf-8&"
-                + "zeroDateTimeBehavior=convertToNull");
+        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/blog?" +
+                              "useUnicode=true&" +
+                              "characterEncoding=UTF-8&" +
+                              "connectTimeout=60000&" +
+                              "socketTimeout=60000&" +
+                              "allowMultiQueries=true");
         dataSource.setUser("root");
         dataSource.setPassword("root");// elecon
         try {

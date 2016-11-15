@@ -86,12 +86,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-8 contact-grid">
 							
 							<p>写下你的话</p>
-							<form action="#" method="post">
-								<p>昵称<input type="text" name="Name" value="不然我会不认识你的" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '所以写个名字吧~';}" required=""></p>
-								<p>邮箱/个人网站<input type="email" name="Email" value="相信你不会放广告的" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '真要放我也不会瞎点';}" required=""></p>
+							<form action="/leavenote/commit" method="post">
+								<p>* 昵称<input type="text" name="nickname" placeholder="别乱写哈"  onblur="if (this.value == '') {this.placeholder = '不然我会不认识你的';}" required=""></p>
+								<p>邮箱/个人网站<input type="text" name="web" placeholder="相信你不会放广告的"  onblur="if (this.value == '') {this.placeholder = '真要放我也不会瞎点啊';}" required=""></p>
 							<!-- 	<input type="text" name="Phone" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}" required=""> -->
-								<p>碎碎念
-								<textarea type="text" name="textarea" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '说得都是宝贵意见';}" required="">来来来，放开嘴别踹腿</textarea></p>
+								<p>* 碎碎念<textarea type="text" name="message" placeholder="张开嘴别踹腿" onblur="if (this.value == '') {this.placeholder = '每一句话都是对我的鞭策！';}" required=""></textarea></p>
 								<input type="submit" value="发送→">
 							</form>
 						</div>

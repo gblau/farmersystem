@@ -17,6 +17,7 @@ public class BlogUserService extends BlogService<User> implements UserService {
     private UserMapper dao;
 
     @Autowired
+    @Override
     public void setBaseMapper() {
         super.setDataAccessObject(dao);
     }
