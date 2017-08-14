@@ -1,6 +1,6 @@
-package com.gb.common.shiro;
+package com.gb.common.shiro.realm;
 
-import com.gb.service.interfaces.UserService;
+import com.gb.service.authorization.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -34,7 +34,7 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        int id = Integer.parseInt((String) principals.getPrimaryPrincipal());
+        String id = (String) principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         authorizationInfo.setRoles(userService.findRoles(id));
         authorizationInfo.setStringPermissions(userService.findPermissions(id));
@@ -49,15 +49,8 @@ public class UserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        //从token中 获取用户身份信息
-        String username = (String) token.getPrincipal();
         //拿username从数据库中查询
-        String password = userService.findPasswordByUsername(username);
-        if(password == null)
-            return null;
-        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(
-                username, password, getName());
-
-        return simpleAuthenticationInfo;
+        return userService.findUserByUsername((String) token.getPrincipal()) == null ?
+                null : new SimpleAuthenticationInfo(token.getPrincipal(), (String) token.getCredentials(), getName());
     }
 }
