@@ -23,7 +23,8 @@ public class Spring extends WebMvcConfigurerAdapter {
     }
 
     /**
-     * 重写MVC对静态资源的处理，相当于<mvc:default-servlet-handler />
+     * 重写MVC对静态资源的处理，把静态资源交还给Servlet处理，可以解决所有静态资源无法访问的问题。
+     * 相当于<mvc:default-servlet-handler />
      * @param configurer
      */
     @Override

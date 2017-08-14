@@ -1,5 +1,6 @@
 package com.gb;
 
+import com.gb.common.util.Log;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -53,11 +54,10 @@ public class Mybatis {
         try {
             resources = new PathMatchingResourcePatternResolver().getResources(packageSearchPath);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            Log.error(e.getLocalizedMessage());
         }
         sFactoryBean.setMapperLocations(resources);
-        sFactoryBean.setTypeAliasesPackage("com.gb.model");
+        sFactoryBean.setTypeAliasesPackage("com.gb.model.po");
 
         return sFactoryBean;
     }
@@ -68,7 +68,7 @@ public class Mybatis {
         try {
             sst = new SqlSessionTemplate(sessionFactory().getObject());
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.error(e.getLocalizedMessage());
             return null;
         }
         return sst;
