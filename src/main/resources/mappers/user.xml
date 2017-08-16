@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gb.dao.UserMapper">
-    <insert id="insert" parameterType="int">
+<mapper namespace="com.gb.dao.authorization.UserMapper">
+    <insert id="insert" parameterType="User">
         insert into user values(#{id},#{username},#{password},#{email},#{phone},#{message})
     </insert>
 
@@ -16,19 +16,19 @@
          WHERE id=#{id};
     </update>
 
-    <delete id="deleteByPrimaryKey" parameterType="int">
+    <delete id="deleteByPrimaryKey" parameterType="String">
         DELETE FROM user WHERE id=#{id};
     </delete>
     
-    <select id="selectByUsername" parameterType="String" resultType="String">
-        SELECT password FROM user WHERE username=#{username};
+    <select id="selectUserByUsername" parameterType="String" resultType="User">
+        SELECT username, password, email, phone, message FROM user WHERE username=#{username};
     </select>
 
-    <select id="selectRoles" parameterType="int" resultType="String">
+    <select id="selectRoles" parameterType="String" resultType="String">
         select role from user u, role r,user_role ur where u.number=#{id} and u.id=ur.user_id and r.id=ur.role_id
     </select>
 
-    <select id="selectPermissions" parameterType="int" resultType="String">
+    <select id="selectPermissions" parameterType="String" resultType="String">
         select permission from user u, role r, permission p, user_role ur, role_permission rp where u.number=#{id} and u.id=ur.user_id and r.id=ur.role_id and r.id=rp.role_id and p.id=rp.permission_id
     </select>
 </mapper>
