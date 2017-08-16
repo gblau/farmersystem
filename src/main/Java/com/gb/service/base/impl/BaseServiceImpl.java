@@ -1,14 +1,14 @@
-package com.gb.service;
+package com.gb.service.base.impl;
 
 import com.gb.dao.Mapper;
-import com.gb.service.interfaces.BaseService;
+import com.gb.service.base.BaseService;
 
 import java.util.List;
 
 /**
  * Created by gblau on 2016-11-12.
  */
-public abstract class BlogService<T> implements BaseService<T> {
+public abstract class BaseServiceImpl<T> implements BaseService<T> {
     private Mapper<T> dao;
 
     public void setDataAccessObject(Mapper<T> dao) {
@@ -16,7 +16,7 @@ public abstract class BlogService<T> implements BaseService<T> {
     }
 
     @Override
-    public T findByPrimaryKey(int id) {
+    public T findByPrimaryKey(String id) {
         return dao.selectByPrimaryKey(id);
     }
 
@@ -26,7 +26,7 @@ public abstract class BlogService<T> implements BaseService<T> {
     }
 
     @Override
-    public int deleteByPrimaryKey(int id) {
+    public int deleteByPrimaryKey(String id) {
         return dao.deleteByPrimaryKey(id);
     }
 

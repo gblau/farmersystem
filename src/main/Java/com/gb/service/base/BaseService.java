@@ -1,4 +1,4 @@
-package com.gb.service.interfaces;
+package com.gb.service.base;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import java.util.List;
 public interface BaseService<T> {
     void setBaseMapper();
 
-    int deleteByPrimaryKey(int id);
+    int deleteByPrimaryKey(String id);
     int insert(T record);
-    T findByPrimaryKey(int id);
+    T findByPrimaryKey(String id);
     List<T> findAllElements();
     int updateByPrimaryKey(T record);
 }
