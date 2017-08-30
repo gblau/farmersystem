@@ -1,4 +1,4 @@
-package com.gb.model.po;
+package com.gb.common.model.po;
 
 /**
  * Created by gblau on 2016-11-12.

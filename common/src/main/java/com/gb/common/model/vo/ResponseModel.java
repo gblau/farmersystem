@@ -1,4 +1,4 @@
-package com.gb.model.vo;
+package com.gb.common.model.vo;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
