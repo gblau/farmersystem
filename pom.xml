@@ -3,8 +3,14 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.gblau</groupId>
   <artifactId>demo</artifactId>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>websocket</module>
+    <module>common</module>
+    <module>engine</module>
+    <module>web</module>
+  </modules>
   <name>house</name>
 
   <properties>

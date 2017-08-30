@@ -1,7 +1,7 @@
 package com.gb.service.authorization.impl;
 
 import com.gb.dao.authorization.UserMapper;
-import com.gb.model.po.User;
+import com.gb.common.model.po.User;
 import com.gb.service.base.impl.BaseServiceImpl;
 import com.gb.service.authorization.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

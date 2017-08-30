@@ -9,7 +9,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 /**
- * Created by gblau on 2016-11-14.
+ * @author gblau
+ * @date 2016-11-14
  */
 @Configuration
 @EnableWebMvc

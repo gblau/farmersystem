@@ -1,8 +1,8 @@
 package com.gb.controller;
 
 import com.gb.controller.base.BaseController;
-import com.gb.model.po.User;
-import com.gb.model.vo.ResponseModel;
+import com.gb.common.model.po.User;
+import com.gb.common.model.vo.ResponseModel;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;

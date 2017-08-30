@@ -1,6 +1,5 @@
 package com.gb.service.authorization;
 
-import com.gb.model.po.User;
 import com.gb.service.base.BaseService;
 
 import java.util.Set;

@@ -1,7 +1,7 @@
 package com.gb.common;
 
 import com.gb.common.util.Log;
-import com.gb.model.vo.ResponseModel;
+import com.gb.common.model.vo.ResponseModel;
 import org.slf4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
