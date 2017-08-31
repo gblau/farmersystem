@@ -4,7 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 /**
- * Created by gblau on 2016-11-12.
+ * @author gblau
+ * @date 2016-11-12
  */
 public class ResponseModel<T> {
     private HttpStatus status;
