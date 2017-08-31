@@ -1,7 +1,8 @@
 package com.gb.common.util;
 
 /**
- * Created by gblau on 2016-11-14.
+ * @author gblau
+ * @date 2016-11-14
  */
 public class SqlSearchUtil {
     public static String getFuzzyQueryString(String value) {
