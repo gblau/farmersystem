@@ -1,4 +1,4 @@
-package com.gb.common;
+package com.gb.common.handler;
 
 import com.gb.common.util.Log;
 import com.gb.common.model.vo.ResponseModel;
