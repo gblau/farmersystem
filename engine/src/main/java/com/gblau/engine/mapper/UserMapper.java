@@ -1,7 +1,6 @@
-package com.gb.dao.authorization;
+package com.gblau.engine.mapper;
 
-import com.gb.dao.Mapper;
-import com.gb.model.po.User;
+import com.gb.common.model.po.User;
 
 import java.util.List;
 import java.util.Set;

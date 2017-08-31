@@ -1,4 +1,4 @@
-package com.gb.dao;
+package com.gblau.engine.mapper;
 
 import java.util.List;
 
