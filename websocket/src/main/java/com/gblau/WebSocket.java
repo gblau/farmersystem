@@ -1,5 +1,6 @@
 package com.gblau;
 
+import com.gblau.handler.DefaultTextWebSocketHandler;
 import com.gblau.handler.SocketHandler;
 import com.gblau.interceptor.WebSocketInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 @EnableWebSocket
 public class WebSocket extends WebMvcConfigurerAdapter implements WebSocketConfigurer {
     @Autowired
-    private SocketHandler socketHandler;
+    private DefaultTextWebSocketHandler socketHandler;
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
