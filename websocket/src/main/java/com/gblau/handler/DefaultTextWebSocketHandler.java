@@ -1,4 +1,4 @@
-package com.gb.controller;
+package com.gblau.handler;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
  */
 @Controller
 @RequestMapping("/websocket")
-public class WebSocketHandler extends TextWebSocketHandler {
+public class DefaultTextWebSocketHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         super.handleTextMessage(session, message);
