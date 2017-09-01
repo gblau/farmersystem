@@ -1,9 +1,10 @@
-package com.gb.service.websocket;
+package com.gblau.handler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.*;
+import org.springframework.web.socket.WebSocketHandler;
 
 import java.io.IOException;
 import java.util.ArrayList;

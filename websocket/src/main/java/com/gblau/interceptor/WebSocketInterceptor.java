@@ -1,4 +1,4 @@
-package com.gb.common.websocket;
+package com.gblau.interceptor;
 
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
