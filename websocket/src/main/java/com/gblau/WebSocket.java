@@ -1,7 +1,7 @@
-package com.gb;
+package com.gblau;
 
-import com.gb.common.websocket.WebSocketInterceptor;
-import com.gb.service.websocket.SocketHandler;
+import com.gblau.handler.SocketHandler;
+import com.gblau.interceptor.WebSocketInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
