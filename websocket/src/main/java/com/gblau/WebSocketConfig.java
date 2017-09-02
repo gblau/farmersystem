@@ -1,25 +1,17 @@
 package com.gblau;
 
 import com.gblau.handler.DefaultTextWebSocketHandler;
-import com.gblau.handler.SocketHandler;
 import com.gblau.interceptor.WebSocketInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.socket.config.annotation.EnableWebSocket;
-import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurationSupport;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
-
 /**
+ * WebMvcConfigurerAdapter
  * @author gblau
  * @date 2017-05-20
  */
-@Configuration
-@EnableWebMvc
-@EnableWebSocket
-public class WebSocket extends WebMvcConfigurerAdapter implements WebSocketConfigurer {
+public class WebSocketConfig extends WebSocketConfigurationSupport {
     @Autowired
     private DefaultTextWebSocketHandler socketHandler;
 
