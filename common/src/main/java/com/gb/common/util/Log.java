@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
  * @author gblau
  * @date 2017-03-18
  */
-public class Log {
+public abstract class Log {
     /**
      * 通过class获得Logger
      * @param clazz
@@ -29,6 +29,7 @@ public class Log {
     }
 
     //------------------------ Trace
+
     /**
      * Trace等级日志，小于debug
      * 由于动态获取Logger，效率较低，建议在非频繁调用的情况下使用！！
@@ -50,6 +51,7 @@ public class Log {
     }
 
     //------------------------ debug
+
     /**
      * Debug等级日志，小于Info
      * 由于动态获取Logger，效率较低，建议在非频繁调用的情况下使用！！
@@ -71,6 +73,7 @@ public class Log {
     }
 
     //------------------------ info
+
     /**
      * Info等级日志，小于Warn
      * 由于动态获取Logger，效率较低，建议在非频繁调用的情况下使用！！
@@ -92,6 +95,7 @@ public class Log {
     }
 
     //------------------------ warn
+
     /**
      * Warn等级日志，小于Error
      * 由于动态获取Logger，效率较低，建议在非频繁调用的情况下使用！！
@@ -135,6 +139,7 @@ public class Log {
     }
 
     //------------------------ error
+    
     /**
      * Error等级日志
      * 由于动态获取Logger，效率较低，建议在非频繁调用的情况下使用！！

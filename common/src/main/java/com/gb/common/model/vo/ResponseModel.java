@@ -4,6 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.util.Assert;
 
 /**
+ * 利用Http状态码作为返回码，可以自定义信息返回
+ * @see HttpStatus
  * @author gblau
  * @date 2016-11-12
  */
@@ -109,7 +111,7 @@ public class ResponseModel<T> {
      * @return
      */
     public static ModelBuilder status(HttpStatus status) {
-        Assert.notNull(status, "HttpStatus must not be null");
+        Assert.notNull(status, "HttpStatus不能为null");
         return new DefaultBuilder(status);
     }
 
