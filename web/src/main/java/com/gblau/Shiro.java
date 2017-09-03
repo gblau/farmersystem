@@ -1,7 +1,7 @@
-package com.gb;
+package com.gblau;
 
-import com.gb.common.shiro.filter.URLPermissionsFilter;
-import com.gb.common.shiro.realm.UserRealm;
+import com.gblau.common.shiro.filter.URLPermissionsFilter;
+import com.gblau.common.shiro.realm.UserRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -43,9 +43,9 @@ public class Shiro {
     }
 
     /**
-     * Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行
+     * Shiro主过滤器强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行
      * Web应用中,Shiro可控制的Web请求必须经过Shiro主过滤器的拦截,Shiro对基于Spring的Web应用提供了完美的支持
-     * @see org.apache.shiro.spring.web.ShiroFilterFactoryBean
+     * @see ShiroFilterFactoryBean
      * @return
      */
     @Bean(name = "shiroFilter")

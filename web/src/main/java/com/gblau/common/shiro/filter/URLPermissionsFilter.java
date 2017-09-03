@@ -1,4 +1,4 @@
-package com.gb.common.shiro.filter;
+package com.gblau.common.shiro.filter;
 
 import org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter;
 import org.springframework.stereotype.Component;

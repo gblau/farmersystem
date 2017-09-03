@@ -1,6 +1,6 @@
-package com.gb.common.shiro.realm;
+package com.gblau.common.shiro.realm;
 
-import com.gb.service.authorization.UserService;
+import com.gblau.service.authorization.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
