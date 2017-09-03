@@ -1,16 +1,17 @@
 package com.gblau.handler;
 
+import com.gb.common.util.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 import org.springframework.web.socket.handler.BinaryWebSocketHandler;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-import org.springframework.web.socket.WebSocketHandler;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -26,8 +27,7 @@ import java.util.Map;
  * @author gblau
  * @date 2017-08-10
  */
-@Controller
-@RequestMapping("/websocket")
+@Service
 public class DefaultTextWebSocketHandler extends TextWebSocketHandler {
     private static final Map<String, WebSocketSession> users = new HashMap<>();
     private static final Logger log = LoggerFactory.getLogger(DefaultTextWebSocketHandler.class);
@@ -40,7 +40,7 @@ public class DefaultTextWebSocketHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session)
             throws Exception {
-        log.info("成功建立socket连接");
+        Log.info("成功建立socket连接, username: {}", getSessionUsername(session));
         users.put(getSessionUsername(session), session);
         session.sendMessage(new TextMessage("我们已经成功建立soket通信了"));
     }
@@ -64,14 +64,14 @@ public class DefaultTextWebSocketHandler extends TextWebSocketHandler {
         if(session.isOpen()){
             session.close();
         }
-        log.error("连接出现错误:"+error.toString());
+        Log.error(log, "username: {}, 连接出现错误: {}", getSessionUsername(session), error.toString());
         users.remove(getSessionUsername(session));
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus arg1)
             throws Exception {
-        log.debug("连接已关闭");
+        Log.debug(log, "username: {}, 连接已关闭", getSessionUsername(session));
         users.remove(getSessionUsername(session));
     }
 
@@ -101,20 +101,15 @@ public class DefaultTextWebSocketHandler extends TextWebSocketHandler {
      * @param message
      */
     public void sendMessageToUser(String userName, TextMessage message) {
-        for (Map.Entry userEntry : users.entrySet()) {
-            WebSocketSession user = (WebSocketSession) userEntry;
-            if (user.getAttributes().get("user").equals(userName)) {
-                try {
-                    sendMessage(user, message);
-                } catch (IOException e) {
-                    log.error(e.getLocalizedMessage());
-                }
-                break;
-            }
+        try {
+            sendMessage(users.get(userName), message);
+        } catch (IOException e) {
+            log.error(e.getLocalizedMessage());
         }
     }
 
     private void sendMessage(WebSocketSession user, TextMessage message) throws IOException {
+        Assert.notNull(user, "session为空");
         if (user.isOpen())
             user.sendMessage(message);
     }
