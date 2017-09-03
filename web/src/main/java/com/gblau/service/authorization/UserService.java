@@ -1,6 +1,7 @@
-package com.gb.service.authorization;
+package com.gblau.service.authorization;
 
-import com.gb.service.base.BaseService;
+import com.gb.common.model.po.User;
+import com.gblau.service.base.BaseService;
 
 import java.util.Set;
 

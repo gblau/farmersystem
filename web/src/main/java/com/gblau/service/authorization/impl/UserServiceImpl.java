@@ -1,9 +1,9 @@
-package com.gb.service.authorization.impl;
+package com.gblau.service.authorization.impl;
 
-import com.gb.dao.authorization.UserMapper;
 import com.gb.common.model.po.User;
-import com.gb.service.base.impl.BaseServiceImpl;
-import com.gb.service.authorization.UserService;
+import com.gblau.service.authorization.UserService;
+import com.gblau.service.base.impl.BaseServiceImpl;
+import com.gblau.engine.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
