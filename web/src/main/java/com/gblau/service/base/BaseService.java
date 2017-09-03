@@ -1,4 +1,4 @@
-package com.gb.service.base;
+package com.gblau.service.base;
 
 import java.util.List;
 

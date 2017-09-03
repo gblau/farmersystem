@@ -1,4 +1,4 @@
-package com.gb.controller.base;
+package com.gblau.controller.base;
 
 import com.gb.common.util.Log;
 import org.apache.commons.lang3.StringUtils;
@@ -33,7 +33,7 @@ public class BaseController {
             else if (data instanceof String && StringUtils.isEmpty((String) data))
                 throw new MissingServletRequestParameterException(data.getClass().getName(), "String");
 
-            else if (data instanceof MultipartFile && isImageTooLarge((MultipartFile) data))
+            else if (data instanceof MultipartFile && isTooLarge((MultipartFile) data))
                 throw new MissingServletRequestParameterException("image", "file larger than 300k so ");
 
             else if (data instanceof Integer && (Integer) data == 0)
@@ -43,7 +43,7 @@ public class BaseController {
                 throw new MissingServletRequestParameterException(data.getClass().getName(), "List");
     }
 
-    protected boolean isImageTooLarge(MultipartFile... images) {
+    protected boolean isTooLarge(MultipartFile... images) {
         for (MultipartFile image : images)
             if (image.getSize() > 3096_00) //300k
                 return true;

@@ -1,7 +1,7 @@
-package com.gb.service.base.impl;
+package com.gblau.service.base.impl;
 
-import com.gb.dao.Mapper;
-import com.gb.service.base.BaseService;
+import com.gblau.service.base.BaseService;
+import com.gblau.engine.mapper.Mapper;
 
 import java.util.List;
 
