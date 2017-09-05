@@ -9,7 +9,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Created by gblau on 2016-11-11.
+ * @author gblau
+ * @date 2016-11-11
  */
 public class UserRealm extends AuthorizingRealm {
     @Autowired
