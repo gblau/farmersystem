@@ -8,7 +8,6 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,14 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class UserController extends BaseController {
-    @Value("c3p0.datasource.jdbc-url")
-    private String url;
-    @Value("c3p0.datasource.password")
-    private String password;
-    @Value("c3p0.datasource.user")
-    private String username;
-    @Value("c3p0.datasource.driver-class")
-    private String driver;
     @Autowired
     private UserService userService;
 
@@ -44,8 +35,6 @@ public class UserController extends BaseController {
 
     @RequestMapping("/test")
     public ResponseModel doTest(String username) throws MissingServletRequestParameterException {
-        System.out.println("小写的URL" + url);
-        System.out.println("小写的PASSWORD"+password);
         return ResponseModel.ok().body(userService.findUserByUsername(username));
     }
 

@@ -23,7 +23,7 @@ public class SocketController{
     @Autowired
     private DefaultTextWebSocketHandler socketHandler;
 
-    @RequestMapping(value="/connect")
+    @RequestMapping(value="/connect", method = RequestMethod.GET)
     public String login(HttpSession session){
         logger.info("用户登录了建立连接啦");
 
