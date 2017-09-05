@@ -4,12 +4,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 /**
  * Spring boot的入口，访问地址是localhost:8080/，不用加上项目名称。
+ * 集成Mybatis，所以不用Spring jdbc的配置
  * Created by gblau on 2016-11-10.
  */
+@Configuration
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {
