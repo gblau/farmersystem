@@ -7,5 +7,5 @@ import org.springframework.context.annotation.Configuration;
  * @date 2016-11-13
  */
 @Configuration
-public class Mybatis extends MybatisConfig {
+public class Mybatis extends DefaultMybatisConfig {
 }

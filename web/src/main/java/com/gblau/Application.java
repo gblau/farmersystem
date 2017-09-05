@@ -1,5 +1,6 @@
 package com.gblau;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -8,9 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 /**
- * Spring boot的入口，访问地址是localhost:8080/，不用加上项目名称。
- * 集成Mybatis，所以不用Spring jdbc的配置
- * Created by gblau on 2016-11-10.
+ * <a>http://localhost:8080<a/>
+ * @author gblau
+ * @date 2016-11-10
  */
 @Configuration
 @SpringBootApplication
@@ -25,12 +26,9 @@ public class Application {
      * @return
      */
     @Bean
-    public FilterRegistrationBean filterRegistrationBean() {
+    public FilterRegistrationBean filterRegistrationBean(@Qualifier("characterEncodingFilter") CharacterEncodingFilter filter) {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding("UTF-8");
-        characterEncodingFilter.setForceEncoding(true);
-        registrationBean.setFilter(characterEncodingFilter);
+        registrationBean.setFilter(filter);
         return registrationBean;
     }
 }

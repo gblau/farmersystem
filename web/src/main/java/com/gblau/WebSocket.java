@@ -12,5 +12,5 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
  */
 @Configuration
 @EnableWebSocket
-public class WebSocket extends WebSocketConfig {
+public class WebSocket extends DefaultWebSocketConfig {
 }

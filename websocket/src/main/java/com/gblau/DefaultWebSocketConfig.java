@@ -3,6 +3,7 @@ package com.gblau;
 import com.gblau.handler.DefaultTextWebSocketHandler;
 import com.gblau.interceptor.WebSocketInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.socket.config.annotation.DelegatingWebSocketConfiguration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
@@ -15,16 +16,20 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
  * @author gblau
  * @date 2017-05-20
  */
-public class WebSocketConfig implements WebSocketConfigurer {
+public class DefaultWebSocketConfig implements WebSocketConfigurer {
+    @Value("${websocket.path}")
+    private String sockJsPath;
+    @Value("${websocket.sockjs-path}")
+    private String path;
     @Autowired
     private DefaultTextWebSocketHandler socketHandler;
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         //注册处理拦截器,拦截url为socketServer的请求
-        registry.addHandler(socketHandler, "/socketServer").addInterceptors(new WebSocketInterceptor());
+        registry.addHandler(socketHandler, path).addInterceptors(new WebSocketInterceptor());
 
         //注册SockJs的处理拦截器,拦截url为/sockjs/socketServer的请求
-        registry.addHandler(socketHandler, "/sockjs/socketServer").addInterceptors(new WebSocketInterceptor()).withSockJS();
+        registry.addHandler(socketHandler, sockJsPath).addInterceptors(new WebSocketInterceptor()).withSockJS();
     }
 }
