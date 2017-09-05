@@ -2,6 +2,7 @@ package com.gblau;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -12,12 +13,19 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * @date 2016-11-14
  */
 @Configuration
-public class Spring extends WebMvcConfigurerAdapter {
+public class SpringWeb extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver getViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setSuffix(".html");
         return resolver;
+    }
+
+    @Bean
+    public CharacterEncodingFilter characterEncodingFilter() {
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        return filter;
     }
 
     /**

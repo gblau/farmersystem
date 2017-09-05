@@ -1,26 +1,25 @@
 package com.gblau;
 
-import com.gb.common.util.Log;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.sql.DataSource;
 import java.io.IOException;
 
 /**
+ * 使用{@link MapperScan}代替{@link MapperScannerConfigurer}配置
  * @author gblau
  * @date 2017-08-30
  */
+@MapperScan(basePackages = "com.gblau.engine.mapper")
 public class MybatisConfig {
 
     /**
@@ -36,7 +35,7 @@ public class MybatisConfig {
      *
      * 参考: <a>https://stackoverflow.com/questions/35302392/in-spring-boot-using-c3p0-simultaneously-with-jdbctemplate-and-hibernate<a/>
      * @see DataSourceBuilder#findType() 自动配置的算法: 默认、HikariCP、CommonPool、CommonPool2
-     * @return
+     * @return {@link DataSource}
      */
     @Bean
     @Primary
@@ -55,48 +54,16 @@ public class MybatisConfig {
     /**
      * 创建Mybatis数据库需要一个数据源，如果按照上方法配置的DataSource，则不能直接调用上面的方法。
      * 因为上面的application参数是托管给Spring的，如果直接调用{@link #readDataSource()}则无法获取jdbc url等参数
-     * @param dataSource
-     * @return
+     * @param dataSource Spring维护的{@link DataSource}实例
+     * @return {@link SqlSessionFactoryBean}
      */
     @Bean
-    public SqlSessionFactoryBean sessionFactory(@Qualifier("readDataSource")DataSource dataSource) {
+    @ConfigurationProperties(prefix = "mybatis")
+    public SqlSessionFactoryBean sessionFactory(@Qualifier("readDataSource") DataSource dataSource) throws IOException {
         SqlSessionFactoryBean sFactoryBean = new SqlSessionFactoryBean();
         sFactoryBean.setDataSource(dataSource);
-        String packageSearchPath = "classpath*:mappers/*.xml";
-        Resource[] resources = null;
-        try {
-            resources = new PathMatchingResourcePatternResolver().getResources(packageSearchPath);
-        } catch (IOException e) {
-            Log.error(e.getLocalizedMessage());
-        }
-        sFactoryBean.setMapperLocations(resources);
+        sFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mappers/*.xml"));
         sFactoryBean.setTypeAliasesPackage("com.gb.common.model.po");
-
         return sFactoryBean;
-    }
-
-    @Bean
-    public SqlSessionTemplate sessionTemplate(@Qualifier("readDataSource")DataSource dataSource) {
-        try {
-            return new SqlSessionTemplate(sessionFactory(dataSource).getObject());
-        } catch (Exception e) {
-            Log.error(e.getLocalizedMessage());
-            return null;
-        }
-    }
-
-    @Bean
-    public CharacterEncodingFilter characterEncodingFilter() {
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-        filter.setEncoding("UTF-8");
-        return filter;
-    }
-
-    @Bean
-    public MapperScannerConfigurer mapperScannerConfigurer() {
-        MapperScannerConfigurer mapper = new MapperScannerConfigurer();
-        mapper.setBasePackage("com.gblau.engine.mapper");
-        mapper.setSqlSessionFactoryBeanName("sessionFactory");
-        return mapper;
     }
 }
