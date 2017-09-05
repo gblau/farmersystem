@@ -2,14 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gblau.engine.mapper.UserMapper">
     <insert id="insert" parameterType="User">
-        insert into user values(#{id},#{username},#{password},#{email},#{phone},#{message})
+        insert into user values(#{id},#{username},#{password},#{phone},#{message})
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="User">
         update user
         <set>
             <if test="password != 'null'">password=#{password}</if>
-            <if test="email != 'null'">email=#{email}</if>
             <if test="phone != 'null'">phone=#{phone}</if>
             <if test="message != 'null'">message=#{message}</if>
         </set>
@@ -21,7 +20,7 @@
     </delete>
     
     <select id="selectUserByUsername" parameterType="String" resultType="User">
-        SELECT username, password, email, phone, message FROM user WHERE username=#{username};
+        SELECT * FROM user WHERE username=#{username};
     </select>
 
     <select id="selectRoles" parameterType="String" resultType="String">

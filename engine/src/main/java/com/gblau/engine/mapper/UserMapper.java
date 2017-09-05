@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by gblau on 2016-11-12.
+ * @author gblau
+ * @date 2016-11-12
  */
 public interface UserMapper extends Mapper<User> {
     User selectUserByUsername(String username);
