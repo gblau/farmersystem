@@ -4,7 +4,6 @@ import com.gb.common.util.Log;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
@@ -19,11 +18,9 @@ import javax.sql.DataSource;
 import java.io.IOException;
 
 /**
- * 使用{@link MapperScan}可以代替{@link MapperScannerConfigurer}的配置
  * @author gblau
  * @date 2017-08-30
  */
-@MapperScan(basePackages = "com.gblau.engine.mapper", sqlSessionTemplateRef  = "sessionFactory")
 public class MybatisConfig {
 
     /**
@@ -44,24 +41,25 @@ public class MybatisConfig {
     @Bean
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource.primary")
-    public DataSource primaryDataSource() {
+    public DataSource readDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.datasource.primary")
-    public DataSource secondDataSource() {
+    @ConfigurationProperties(prefix = "spring.datasource.secondary")
+    public DataSource writeDataSource() {
         return DataSourceBuilder.create().type(ComboPooledDataSource.class).build();
     }
 
+
     /**
      * 创建Mybatis数据库需要一个数据源，如果按照上方法配置的DataSource，则不能直接调用上面的方法。
-     * 因为上面的application参数是托管给Spring的，如果直接调用{@link #secondDataSource()} or {@link #primaryDataSource()}则无法获取jdbc url等参数
+     * 因为上面的application参数是托管给Spring的，如果直接调用{@link #readDataSource()}则无法获取jdbc url等参数
      * @param dataSource
      * @return
      */
     @Bean
-    public SqlSessionFactoryBean sessionFactory(@Qualifier("primaryDataSource")DataSource dataSource) {
+    public SqlSessionFactoryBean sessionFactory(@Qualifier("readDataSource")DataSource dataSource) {
         SqlSessionFactoryBean sFactoryBean = new SqlSessionFactoryBean();
         sFactoryBean.setDataSource(dataSource);
         String packageSearchPath = "classpath*:mappers/*.xml";
@@ -78,7 +76,7 @@ public class MybatisConfig {
     }
 
     @Bean
-    public SqlSessionTemplate sessionTemplate(@Qualifier("primaryDataSource")DataSource dataSource) {
+    public SqlSessionTemplate sessionTemplate(@Qualifier("readDataSource")DataSource dataSource) {
         try {
             return new SqlSessionTemplate(sessionFactory(dataSource).getObject());
         } catch (Exception e) {
@@ -92,5 +90,13 @@ public class MybatisConfig {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");
         return filter;
+    }
+
+    @Bean
+    public MapperScannerConfigurer mapperScannerConfigurer() {
+        MapperScannerConfigurer mapper = new MapperScannerConfigurer();
+        mapper.setBasePackage("com.gblau.engine.mapper");
+        mapper.setSqlSessionFactoryBeanName("sessionFactory");
+        return mapper;
     }
 }
