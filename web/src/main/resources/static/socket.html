@@ -40,10 +40,10 @@
     Javascript and reload this page!</h2></noscript>
 <div>
     <div id="connect-container">
-        <input id="radio1" type="radio" name="group1" onclick="updateUrl('/socketServer');">
+        <input id="radio1" type="radio" name="group1" onclick="updateUrl('/getSocketServerMessage');">
         <label for="radio1">W3C WebSocket</label>
         <br>
-        <input id="radio2" type="radio" name="group1" onclick="updateUrl('/sockjs/socketServer');">
+        <input id="radio2" type="radio" name="group1" onclick="updateUrl('/sockjs/getSocketServerMessage');">
         <label for="radio2">SockJS</label>
         <div>
             <button id="connect" onclick="connect();">Connect</button>

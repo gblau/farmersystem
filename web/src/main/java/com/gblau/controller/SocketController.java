@@ -1,12 +1,11 @@
 package com.gblau.controller;
 
+import com.gb.common.model.vo.ResponseModel;
 import com.gblau.handler.DefaultTextWebSocketHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.socket.TextMessage;
 
 import javax.servlet.http.HttpSession;
@@ -16,26 +15,23 @@ import javax.servlet.http.HttpSession;
  * @date 2017-09-02
  */
 @Controller
+@RequestMapping("/websocket")
 public class SocketController{
-
-    private static final Logger logger = LoggerFactory.getLogger(SocketController.class);
-
     @Autowired
     private DefaultTextWebSocketHandler socketHandler;
+    @Autowired
+    private HttpSession session;
 
-    @RequestMapping(value="/connect", method = RequestMethod.GET)
-    public String login(HttpSession session){
-        logger.info("用户登录了建立连接啦");
-
+    @RequestMapping("/demo")
+    public String startWebsocketDemo() {
         session.setAttribute("user", "gblau");
-
-        return "home";
+        return "/socket";
     }
 
-    @RequestMapping(value = "/send", method = RequestMethod.GET)
-    public String sendMessage(HttpSession session){
-        socketHandler.sendMessageToUser("gblau", new TextMessage("这是一条测试的消息"));
-        return "message";
+    @RequestMapping("/send")
+    @ResponseBody
+    public ResponseModel sendMessageToUser(String username, String message) {
+        socketHandler.sendMessageToUser(username, new TextMessage(message));
+        return ResponseModel.ok().build();
     }
-
 }
