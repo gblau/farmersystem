@@ -6,10 +6,10 @@ package com.gb.common.util;
  */
 public abstract class SqlSearchUtil {
     public static String getFuzzyQueryString(String value) {
-        return "%" + value + "%";
+        return "%".concat(value).concat("%");
     }
 
     public static String getSingleCharFuzzyQueryString(String value) {
-        return "_" + value + "_";
+        return "_".concat(value).concat("_");
     }
 }
