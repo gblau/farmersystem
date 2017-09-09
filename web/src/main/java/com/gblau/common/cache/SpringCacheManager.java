@@ -1,4 +1,4 @@
-package com.gb.common.cache;
+package com.gblau.common.cache;
 
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
