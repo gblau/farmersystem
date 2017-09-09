@@ -16,20 +16,20 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
  * @author gblau
  * @date 2017-05-20
  */
+@EnableWebSocket
 public class DefaultWebSocketConfig implements WebSocketConfigurer {
-    @Value("${websocket.path}")
-    private String sockJsPath;
     @Value("${websocket.sockjs-path}")
+    private String sockJsPath;
+    @Value("${websocket.path}")
     private String path;
     @Autowired
     private DefaultTextWebSocketHandler socketHandler;
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        //注册处理拦截器,拦截url为socketServer的请求
+        //注册处理拦截器,拦截url的请求
         registry.addHandler(socketHandler, path).addInterceptors(new WebSocketInterceptor());
-
-        //注册SockJs的处理拦截器,拦截url为/sockjs/socketServer的请求
+        //注册SockJs的处理拦截器
         registry.addHandler(socketHandler, sockJsPath).addInterceptors(new WebSocketInterceptor()).withSockJS();
     }
 }

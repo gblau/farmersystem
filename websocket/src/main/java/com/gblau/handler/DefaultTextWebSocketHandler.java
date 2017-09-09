@@ -14,8 +14,8 @@ import org.springframework.web.socket.handler.BinaryWebSocketHandler;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 一个用于处理接收到的信息的SocketHandler。
@@ -29,7 +29,7 @@ import java.util.Map;
  */
 @Service
 public class DefaultTextWebSocketHandler extends TextWebSocketHandler {
-    private static final Map<String, WebSocketSession> users = new HashMap<>();
+    private static final Map<String, WebSocketSession> users = new ConcurrentHashMap<>();
     private static final Logger log = LoggerFactory.getLogger(DefaultTextWebSocketHandler.class);
 
     /**
@@ -54,8 +54,7 @@ public class DefaultTextWebSocketHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         super.handleTextMessage(session, message);
-        TextMessage returnMessage = new TextMessage(message.getPayload() + " recieved at server");
-        session.sendMessage(returnMessage);
+        sendMessage(session, new TextMessage(message.getPayload() + " recieved at server"));
     }
 
     @Override
@@ -101,8 +100,11 @@ public class DefaultTextWebSocketHandler extends TextWebSocketHandler {
      * @param message
      */
     public void sendMessageToUser(String userName, TextMessage message) {
+        WebSocketSession user = users.get(userName);
+        if (user == null)
+            return;
         try {
-            sendMessage(users.get(userName), message);
+            sendMessage(user, message);
         } catch (IOException e) {
             log.error(e.getLocalizedMessage());
         }
@@ -115,6 +117,6 @@ public class DefaultTextWebSocketHandler extends TextWebSocketHandler {
     }
 
     private String getSessionUsername(WebSocketSession session) {
-        return session.getAttributes().get("user").toString();
+        return String.valueOf(session.getAttributes().get("user"));
     }
 }

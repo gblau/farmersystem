@@ -20,12 +20,21 @@ public class WebSocketInterceptor extends HttpSessionHandshakeInterceptor {
     @Override
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response,
                                    WebSocketHandler handler, Map<String, Object> attributes) throws Exception {
-        ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
-        HttpSession session = servletRequest.getServletRequest().getSession();
-        if(session!=null) {
-            //区分socket连接以定向发送消息
-            attributes.put("user", session.getAttribute("user"));
-        }
+        putUser(request, attributes);
         return super.beforeHandshake(request, response, handler, attributes);
+    }
+
+    private void putUser(ServerHttpRequest request, Map<String, Object> attributes) {
+        HttpSession session = getSession(request);
+        if (session == null)
+            return;
+
+        Object attribute = session.getAttribute("user");
+        if (attribute != null)
+            attributes.put("user", attribute);  //区分socket连接以定向发送消息
+    }
+
+    private HttpSession getSession(ServerHttpRequest request) {
+        return ((ServletServerHttpRequest) request).getServletRequest().getSession(false);
     }
 }
