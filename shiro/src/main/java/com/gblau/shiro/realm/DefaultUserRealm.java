@@ -1,21 +1,16 @@
-package com.gblau.common.shiro.realm;
+package com.gblau.shiro.realm;
 
-import com.gblau.service.authorization.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author gblau
  * @date 2016-11-11
  */
-public class UserRealm extends AuthorizingRealm {
-    @Autowired
-    private UserService userService;
-
+public abstract class DefaultUserRealm extends AuthorizingRealm {
     @Override
     public String getName() {
         return "userRealm";
@@ -37,8 +32,8 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String id = (String) principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userService.findRoles(id));
-        authorizationInfo.setStringPermissions(userService.findPermissions(id));
+        setUserRolesAndPermissions(authorizationInfo, id);
+
         return authorizationInfo;
     }
 
@@ -51,7 +46,21 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         //拿username从数据库中查询
-        return userService.findUserByUsername((String) token.getPrincipal()) == null ?
-                null : new SimpleAuthenticationInfo(token.getPrincipal(), (String) token.getCredentials(), getName());
+        return isUserExist((String) token.getPrincipal()) ?
+                null : new SimpleAuthenticationInfo(token.getPrincipal(), token.getCredentials(), getName());
     }
+
+    /**
+     * 通过userId，设置该用户的角色和所拥有的权限
+     * @param authorizationInfo
+     * @param userId
+     */
+    protected abstract void setUserRolesAndPermissions(SimpleAuthorizationInfo authorizationInfo, String userId);
+
+    /**
+     * 判断是否存在该用户。
+     * @param username
+     * @return boolean 存在与否
+     */
+    protected abstract boolean isUserExist(String username);
 }
