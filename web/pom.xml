@@ -32,6 +32,11 @@
             <artifactId>shiro</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.gblau</groupId>
+            <artifactId>ws</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>web</finalName>
