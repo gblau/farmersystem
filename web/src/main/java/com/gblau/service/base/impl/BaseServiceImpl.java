@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class BaseServiceImpl<T> implements BaseService<T> {
     private Mapper<T> dao;
 
-    public void setDataAccessObject(Mapper<T> dao) {
+    protected void setDataAccessObject(Mapper<T> dao) {
         this.dao = dao;
     }
 
@@ -36,7 +36,19 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
     }
 
     @Override
+    public int insertSelective(T record) {
+        return dao.insertSelective(record);
+    }
+
+    @Override
     public int updateByPrimaryKey(T record) {
         return dao.updateByPrimaryKey(record);
     }
+
+    @Override
+    public int updateByPrimaryKeySelective(T record) {
+        return dao.updateByPrimaryKeySelective(record);
+    }
+
+
 }

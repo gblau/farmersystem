@@ -10,7 +10,9 @@ public interface BaseService<T> {
 
     int deleteByPrimaryKey(String id);
     int insert(T record);
+    int insertSelective(T record);
     T findByPrimaryKey(String id);
     List<T> findAllElements();
     int updateByPrimaryKey(T record);
+    int updateByPrimaryKeySelective(T record);
 }
