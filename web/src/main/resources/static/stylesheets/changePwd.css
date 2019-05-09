@@ -1,0 +1,13 @@
+a{
+    color:black;
+    text-decoration:none;
+}
+
+a:hover{
+    color: blue;
+}
+#error_box{
+    text-align: center;
+    color:#fc3434;
+    font-size: 12px;    
+}

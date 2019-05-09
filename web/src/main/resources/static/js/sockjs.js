@@ -3481,7 +3481,7 @@ module.exports = {
     };
 
     doc.open();
-    doc.write('<html><s' + 'cript>' +
+    doc.write('<html xmlns="http://www.w3.org/1999/xhtml"       xmlns:th="http://www.thymeleaf.org"><s' + 'cript>' +
               'document.domain="' + global.document.domain + '";' +
               '</s' + 'cript></html>');
     doc.close();

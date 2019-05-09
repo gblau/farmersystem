@@ -1,0 +1,138 @@
+<html xmlns="http://www.w3.org/1999/xhtml"       xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>业务处理</title>
+    <link rel="stylesheet" href="../stylesheets/transaction.css">
+    <script src="../javascripts/transaction.js"></script>
+</head>
+
+<body>
+
+    <!-- 头部标题栏 -->
+    <div class="header_box">
+        <a href="farmerHome.html"><b style="font-size:20px;font-family: 黑体;margin-left:10px;">⏎返回首页</b> </a>
+        <p style="text-align: center;font-weight:bold;font-size:40px;font-family: 隶书;color:rgb(12, 158, 77);margin-top:-5px;">
+            业务处理</p>
+    </div>
+
+    <div class="content">
+
+        <!-- 左侧菜单栏 -->
+        <div class="left">
+            <div class="left_item" onclick="todoOrder()"
+                style="border-radius:15px;font-weight:bold;font-size: 20px;color:rgb(255, 255, 255);font-family:黑体;margin-bottom:20px;margin-top:25px;">
+                未处理订单</div>
+            <div class="left_item" onclick="todoAppointment()"
+                style="border-radius:15px;font-weight:bold;font-size: 20px;color:rgb(255, 255, 255);font-family:黑体;margin-bottom:20px;margin-top:25px;">
+                未处理预约</div>
+            <div class="left_item" onclick="doneOrder()"
+                style="border-radius:15px;font-weight:bold;font-size: 20px;color:rgb(255, 255, 255);font-family:黑体;margin-bottom:20px;margin-top:25px;">
+                已处理订单</div>
+            <div class="left_item" onclick="doneAppointment()"
+                style="border-radius:15px;font-weight:bold;font-size: 20px;color:rgb(255, 255, 255);font-family:黑体;margin-bottom:20px;margin-top:25px;">
+                已处理预约</div>
+        </div>
+
+        <!-- 右侧div块 -->
+        <div class="right">
+            <!-- 未处理订单-->
+            <div id="Button1" style="display:none;">
+                    <form action="" method="" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);">
+                        <div class="todoOrder" >
+                            <img src="../images/caomei01.jpg" alt="无法加载"/>
+                                <span class="titlename">订单编号：</span>
+                                <span class="con">[12345]</span><br>
+                                <span class="titlename">商品名称：</span>
+                                <span class="con">[高级草莓]</span><br>
+                                <span class="titlename">商品数量：</span>
+                                <span class="con">[200]</span><br>
+                                <span class="titlename">买家姓名：</span>
+                                <span class="con">[骆世杰]</span><br>
+                                <span class="titlename">买家电话：</span>
+                                <span class="con">[15626239154]</span><br>
+                                <span class="titlename">买家地址：</span>
+                                <span class="con">[广州市广工]</span><br>
+                                <span class="titlename">费用合计：</span>
+                                <span class="con">[300元]</span><br>
+                        </div> 
+                        <div class="process" style="text-align:center;">
+                            <input type="submit" value="接 受">
+                            <input type="submit" value="拒 绝">
+                        </div>
+                    </form>
+                </div>
+
+            <!-- 未处理预约-->
+            <div id="Button2" style="display:none;">
+                <form action="" method="" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);">
+                    <div class="todoAppointment" >
+                        <img src="../images/town01.jpg" alt="无法加载"/>
+                            <span class="titlename">预约单号：</span>
+                            <span class="con">[12345]</span><br>
+                            <span class="titlename">顾客姓名：</span>
+                            <span class="con">[骆世杰]</span><br>
+                            <span class="titlename">顾客电话：</span>
+                            <span class="con">[15626239154]</span><br>  
+                            <span class="titlename">顾客地址：</span>
+                            <span class="con">[广州市广工]</span><br>                                                     
+                            <span class="titlename">预约时间：</span>
+                            <span class="con">[2019-05-05]</span><br>
+                            <span class="titlename">应到时间：</span>
+                            <span class="con">[2019-05-06]</span><br>
+                            <span class="titlename">预约人数：</span>
+                            <span class="con">[4]</span><br>
+                    </div> 
+                    <div class="process" style="text-align:center;">
+                        <input type="submit" value="接 受">
+                        <input type="submit" value="拒 绝">
+                    </div>
+                </form>
+            </div>
+
+            <!-- 已处理订单 -->
+            <div id="Button3" style="display:none;">
+                <div class="doneOrder" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);">
+                    <img src="../images/caomei01.jpg" alt="无法加载"/>
+                        <span class="titlename">订单编号：</span>
+                        <span class="con">[12345]</span><br>
+                        <span class="titlename">商品名称：</span>
+                        <span class="con">[高级草莓]</span><br>
+                        <span class="titlename">商品数量：</span>
+                        <span class="con">[200]</span><br>
+                        <span class="titlename">买家姓名：</span>
+                        <span class="con">[骆世杰]</span><br>
+                        <span class="titlename">买家电话：</span>
+                        <span class="con">[15626239154]</span><br>
+                        <span class="titlename">买家地址：</span>
+                        <span class="con">[广州市广工]</span><br>
+                        <span class="titlename">费用合计：</span>
+                        <span class="con">[300元]</span><br>
+                </div> 
+            </div>
+
+            <!-- 已处理预约 -->
+            <div id="Button4" style="display:none;">
+                <div class="doneAppointment" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);">
+                    <img src="../images/town01.jpg" alt="无法加载"/>
+                        <span class="titlename">预约单号：</span>
+                        <span class="con">[12345]</span><br>
+                        <span class="titlename">顾客姓名：</span>
+                        <span class="con">[骆世杰]</span><br>
+                        <span class="titlename">顾客电话：</span>
+                        <span class="con">[15626239154]</span><br>  
+                        <span class="titlename">顾客地址：</span>
+                        <span class="con">[广州市广工]</span><br>                                                     
+                        <span class="titlename">预约时间：</span>
+                        <span class="con">[2019-05-05]</span><br>
+                        <span class="titlename">应到时间：</span>
+                        <span class="con">[2019-05-06]</span><br>
+                        <span class="titlename">预约人数：</span>
+                        <span class="con">[4]</span><br>
+                </div> 
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>注册'我爱我家'智慧乡村系统</title>
+        <link  rel="stylesheet" type="text/css" href="../stylesheets/login_register.css">
+        <link rel="stylesheet" href="../stylesheets/bootstrap.min.css" />
+        <link rel="stylesheet" href="../stylesheets/login_register.css" />
+        <script type="text/javascript" src="../javascripts/register.js"></script>
+        <script src="../javascripts/register.js"></script>
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            body {
+                background:url(../images/bg.jpg) #a8fa8f;
+                background-repeat:no-repeat ;
+                background-size:100% 100%;
+                background-attachment: fixed;
+            }
+            .mycenter{
+                margin-top: 100px;
+                margin-left: auto;
+                margin-right: auto;
+                height: 350px;
+                width:500px;
+                padding: 5%;
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+            .mycenter mysign{
+                width: 440px;
+            }
+            .mycenter input,button{
+                border-radius: 10px;
+                margin-top:2%;
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+
+            p{
+                text-align: center;
+                margin-top: 5%;
+                font-size: 30px;
+                font-weight: bold;
+                color:rgb(25, 128, 71);
+            }
+            .radios{
+                text-align:center;
+                margin-top:3%;
+                font-size: 15px;
+            }
+        </style>
+    </head>
+     
+    <body>
+        <form th:action="@{/regist}" method="post">
+            <p>请您注册</p>
+            <div class="mycenter">
+                <div class="mysign">
+                    <div class="col-lg-10">
+                        <input type="text" th:value="${user.username}" id="userName" class="form-control" name="username" placeholder="请输入账号" required autofocus/>
+                    </div>
+                    <div class="col-lg-10">
+                        <input type="password" id="userPwd" class="form-control" name="password" placeholder="请输入密码" required autofocus/>
+                    </div>
+                    <div class="col-lg-10">
+                        <input type="password" id="pwd" class="form-control" name="password" placeholder="请再次输入密码" required autofocus/>
+                    </div>
+                    <div class="col-lg-10">
+                        <input type="text" th:value="${user.phone}" id="userTel" class="form-control" name="usertel" placeholder="请输入手机号" required autofocus/>
+                    </div>
+                    <div class="radios">
+                        <label class="radio-inline"><input type="radio" name="optradio" th:checked="${roleid}" value="1" checked><span style="color:rgb(138, 16, 16);font-weight:bold;font-size:15px;">我是农户</span></label>
+                        <label class="radio-inline"><input type="radio" name="optradio" th:checked="${roleid}" value="2"><span style="color:rgb(138, 16, 16);font-weight:bold;font-size:15px;">我是顾客</span></label>
+                    </div>
+                    <br>
+                    <div id="error_box"><br></div>
+                    <div class="col-lg-10">
+                        <button type="submit" class="btn btn-success col-lg-12" >注册</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

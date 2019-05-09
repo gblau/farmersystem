@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"       xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="utf-8">
+        <title>管理员-账户管理</title>
+        <style>
+            body{
+                height:100%;
+                width:100%;
+                background:url(../images/bg.jpg) #a8fa8f;
+                background-repeat:no-repeat ;
+                background-size:100% 100%;
+                background-attachment: fixed;
+            }
+            .table {
+            height:35px;
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-top:70px;
+            }
+
+            .table td,.table th {
+            height:40px;
+            border-bottom: none;
+            border-left: none;
+            border-right: 1px solid #B74;
+            border-top: 1px solid #B74;
+
+            }
+
+            .table tr {
+            border: 1px solid #B74;
+            margin-top:5px;
+            }
+            .submitBtn{
+            width:50px;
+            height:30px;
+            margin-top:10px;
+            background-color:#57ac6c;
+            border-radius:2px;
+            color:white;
+            font-size:15px;
+            border:none;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <div style="text-align:center;margin:30px;">
+            <form action="" method="" >
+                <table class="table" id="myTable">
+                    <thead>
+                        <tr>
+                            <th width="30%">用户ID</th>
+                            <th width="30%">账户</th>
+                            <th width="25%">姓名</th>
+                            <th width="15%">操作</th>
+                        </tr>
+                    <thead>
+                    <tbody id="tb" style="text-align:center">
+                        <tr>
+                            <td>12345</td>
+                            <td>15626239154</td>
+                            <td>骆世杰</td>
+                            <td><input type='button' value=' 删 除 '></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" value="保 存" class="submitBtn"/>
+            </form>    
+        </div>        
+    </body>
+
+</html>

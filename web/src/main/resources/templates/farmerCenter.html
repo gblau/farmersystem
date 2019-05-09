@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml"       xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>农户中心</title>
+    <link rel="stylesheet" href="../stylesheets/farmerCenter.css">
+    <script src="../javascripts/farmerCenter.js"></script>
+</head>
+
+<body>
+
+    <!-- 头部标题栏 -->
+    <div class="header_box">
+        <a href="farmerHome.html"><b style="font-size:20px;font-family: 黑体;margin-left:10px;">⏎返回首页</b> </a>
+        <p style="text-align: center;font-weight:bold;font-size:40px;font-family: 隶书;color:rgb(12, 158, 77);margin-top:-5px;">农户中心</p>
+    </div>
+
+    <div class="content">
+
+        <!-- 左侧菜单栏 -->
+        <div class="left">
+            <div class="left_item" onclick="myShop()" 
+                style="border-radius:15px;font-weight:bold;font-size: 20px;color:rgb(255, 255, 255);font-family:黑体;margin-bottom:20px;margin-top:25px;">
+                我的农庄</div>
+            <div class="left_item" onclick="myFarm()"
+                style="border-radius:15px;font-weight:bold;font-size: 20px;color:rgb(255, 255, 255);font-family:黑体;margin-bottom:20px;">
+                我的店铺</div>
+            <div class="left_item" onclick="myInfo()"
+                style="border-radius:15px;font-weight:bold;font-size: 20px;color:rgb(255, 255, 255);font-family:黑体;">
+                个人信息</div>
+        </div>
+
+        <!-- 右侧div块 -->
+        <div class="right">
+            <!-- 我的农庄 -->
+            <div id="Button1" style="display:none">
+                <form action="" method="" >
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="10%">体验项目</th>
+                                <th width="10%">剩余名额</th>
+                                <th width="45%">地址</th>
+                                <th width="25%">简介</th>
+                                <th width="10%"><input type="button" value="单击添加项.." onclick="add()"> </th>
+                            </tr>
+                        <thead>
+                        <tbody id="tb" style="text-align:center">
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                    <input type="submit" value="提 交" class="submitBtn"/>
+                </form>    
+            </div>
+
+            <!-- 我的店铺 -->
+            <div id="Button2" style="display:none">
+                <form action="" method="" >
+                   <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="10%">商品名</th>
+                                <th width="10%">价格</th>
+                                <th width="10%">库存</th>
+                                <th width="50%">详情</th>
+                                <th width="10%">图片</th>
+                                <th width="10%"><input type="button" value="单击添加项.." onclick="add01()"> </th>
+                            </tr>
+                        <thead>
+                        <tbody id="tb01" style="text-align:center">
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                    <input type="submit" value="提 交" class="submitBtn"/>
+                </form>
+            </div>
+
+            <!-- 个人信息 -->
+            <div id="Button3" style="display:none;">
+                <form action="" method="">
+                    <label style="font-size:22px;">用户昵称</label>
+                    <input id="userName" type="text" 
+                    style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+                    #484948;color:#050505;"><br><br>
+
+                    <label style="font-size:22px;">电话号码</label>
+                    <input id="userTel" type="tel"
+                    style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+                    #484948;color:#050505;"><br><br>
+
+                    <label style="font-size:22px;">真实姓名</label>
+                    <input id="name" type="text" 
+                     style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+                     #484948;color:#050505;"><br><br>
+
+                    <label style="font-size:22px;">用户地址</label>
+                    <textarea rows="3" cols="35"></textarea><br><br>
+
+                    <label style="font-size:22px;">个人简介</label>
+                    <textarea rows="3" cols="35"></textarea><br><br>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" value="1" checked>
+                        <span style="font-size:22px;">男</span>
+                    </label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" value="2">
+                        <span style="font-size:22px;">女</span>
+                    </label>
+                    <br><br><br>
+
+                    <input type="submit" 
+                    style="font-size:25px;font-weight:bold;width:100px;height:30px; background-color:#57ac6c;
+                        border-radius:5px;color:#f5f8f6;font-size:18px;border:none;" value="保 存">
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

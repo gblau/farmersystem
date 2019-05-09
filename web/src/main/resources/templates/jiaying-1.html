@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"       xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>火腿佳品</title>
+    <link rel="stylesheet" href="../stylesheets/amin01-1.css" />
+    <!-- 图片轮播js -->
+    <script type="text/javascript">
+        window.onload = function () {
+            var oBox = document.getElementById('box');
+            var oBtn = document.getElementById('btn');
+            var aBtn = oBtn.getElementsByTagName('a'); //alert(aBtn.length);
+            var aPicText = getByclass('picbox', oBox);
+            for (var i = 0; i < aBtn.length; i++) {
+                aBtn[i].index = i; //先隐藏全部，在单独显示选中的 
+                aBtn[i].onmouseover = function () {
+                    for (var n = 0; n < aBtn.length; n++) {
+                        aPicText[n].style.display = "none";
+                        aBtn[n].className = '';
+                    }
+                    aPicText[this.index].style.display = "block";
+                    this.className = 'act';
+                }
+                aBtn[i].onclick = function () {
+                    for (var n = 0; n < aBtn.length; n++) {
+                        aPicText[n].style.display = "none";
+                        aBtn[n].className = '';
+                    }
+                    aPicText[this.index].style.display = "block";
+                    this.className = 'act';
+                }
+            }
+            //得到class为picBox的div 
+            function getByclass(sName, oParent) {
+                var obj = oParent.getElementsByTagName('*');
+                var result = [];
+                for (var i = 0; i < obj.length; i++) {
+                    if (obj[i].className == sName) {
+                        result.push(obj[i]);
+                    }
+                }
+                return result;
+            }
+            setInterval(function () {
+                for (var n = 0; n < aBtn.length; n++) {
+                    if (aPicText[n].style.display == 'block' && aBtn[n].className == 'act') {
+                        aPicText[n].style.display = "none";
+                        aBtn[n].className = '';
+                        if (n == aBtn.length - 1) {
+                            aPicText[0].style.display = "block";
+                            aBtn[0].className = 'act';
+                        } else {
+                            aPicText[n + 1].style.display = "block";
+                            aBtn[n + 1].className = 'act';
+                        }
+                        break;
+                    }
+                }
+            }, 1500);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="top">
+        <br><br>
+        <span>火腿佳品</span><br>
+        <span>嘉莹造</span><br>
+        <span>想要品尝？马上<a href="#buy">购买</a></span><br><br>
+        <span style="color:red;font-size:28px;font-family:黑体;font-weight:bold;margin-left:500px;">价格：【】元/只（约重1kg）</span>
+    </div>
+    <div class="box" id="box">
+        <div class="box1">
+            <div class="picbox" style="display:block;">
+                <img src="../images/ruzhu01.jpg" />
+            </div>
+            <div class="picbox">
+                <img src="../images/huotui01.jpg" />
+            </div>
+            <div class="picbox">
+                <img src="../images/huotui02.jpg" />
+            </div>
+            <div class="picbtn" id="btn">
+                <a href="javascript:void(0)" class="act"></a>
+                <a href="javascript:void(0)"></a>
+                <a href="javascript:void(0)"></a>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <p>嘉莹乳猪养殖农庄,
+            <br>始建于2016年初,
+            <br>于2017年正式完工。
+            <br>自农庄建成以后，
+            <br>我们便着重天然的养殖方式，
+            <br>让乳猪吸收天地日月之精华茁壮成长。
+            <br>我们承诺，
+            <br>在养殖过程中，
+            <br>绝不添加任何催生长的药物。
+            <br>来到这，
+            <br>您还可以体验到我们喂养乳猪的全过程，
+            <br>欣赏乳猪在此奔跑回归自然的景象，
+            <br>还可以在此品尝到我们的乳猪制品，
+            <br>观摩烹饪过程。<br>如果您对我们的农庄有兴趣，
+            <br>还可以进入我们的<a href="jiayingF.html">农庄</a>体验农庄风情！
+        </p>
+    </div>
+    <div class="buy" id="buy">
+        <form method="" action="">
+            <p>订单填写</p>
+            <label style="font-size:22px;">收件人姓名</label>
+            <input id="name" type="text" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+                     #484948;color:#050505;"><br><br>
+            <label style="font-size:22px;">电话号码</label>
+            <input id="userTel" type="tel" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+                    #484948;color:#050505;"><br><br>
+            <label style="font-size:22px;">收件地址</label>
+            <input id="userAddress" type="text" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+                    #484948;color:#050505;"><br><br>
+            <label style="font-size:22px;">购买数量</label>
+            <input id="number" type="text" style="text-indent:8px;width:100px;height:30px;border-radius:6px;border:1.2px solid
+                    #484948;color:#050505;">&nbsp;&nbsp;
+            <span style="font-size:22px;color:red;">库存：【 】</span><br><br>
+            <label style="font-size:22px;">交易金额为：【由价格与所填数量计算动态得出】</label>
+            <br><br><br>
+            <input type="submit" style="font-size:25px;font-weight:bold;width:100px;height:30px; background-color:#57ac6c;
+                        border-radius:5px;color:#f5f8f6;font-size:18px;border:none;" value="提 交">
+            <br><br><br><br><br>
+        </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<html xmlns="http://www.w3.org/1999/xhtml"       xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>顾客中心</title>
+    <link rel="stylesheet" href="../stylesheets/customerCenter.css">
+    <script src="../javascripts/customerCenter.js"></script>
+</head>
+
+<body>
+
+    <!-- 头部标题栏 -->
+    <div class="header_box">
+        <a href="customerHome.html"><b style="font-size:20px;font-family: 黑体;margin-left:10px;">⏎返回首页</b> </a>
+        <p
+            style="text-align: center;font-weight:bold;font-size:40px;font-family: 隶书;color:rgb(12, 158, 77);margin-top:-5px;">
+            顾客中心</p>
+    </div>
+
+    <div class="content">
+
+        <!-- 左侧菜单栏 -->
+        <div class="left">
+            <div class="left_item" onclick="myOrder()"
+                style="border-radius:15px;font-weight:bold;font-size: 20px;color:rgb(255, 255, 255);font-family:黑体;margin-bottom:20px;margin-top:25px;">
+                我的订单</div>
+            <div class="left_item" onclick="myAppointment()"
+                style="border-radius:15px;font-weight:bold;font-size: 20px;color:rgb(255, 255, 255);font-family:黑体;margin-bottom:20px;">
+                我的预约</div>
+            <div class="left_item" onclick="myInfo()"
+                style="border-radius:15px;font-weight:bold;font-size: 20px;color:rgb(255, 255, 255);font-family:黑体;">
+                个人信息</div>
+        </div>
+
+        <!-- 右侧div块 -->
+        <div class="right">
+            <!-- 我的订单 -->
+            <div id="Button1" style="display:none;">
+                <div class="order" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);">
+                    <a href="草莓url"><img src="../images/caomei01.jpg" alt="无法加载"/></a>
+
+                    <div class="info1" style="margin-left:5px;">
+                        <span class="titlename">订单编号：</span>
+                        <span class="con">[12345]</span>
+                    </div>
+
+                    <div class="info2" style="margin-left:5px;">
+                        <span class="titlename">商品名称：</span>
+                        <span class="con">[高级草莓]</span><br>
+                        <span class="titlename">卖家店铺：</span>
+                        <span class="con">[桃花源农庄]</span>
+                    </div>
+
+                    <div class="info3" style="margin-left:5px;">
+                        <span class="titlename">下单时间：</span>
+                        <span class="con">[2019-05-05]</span><br>
+                        <span class="titlename">商品数量：</span>
+                        <span class="con">[200]</span><br>
+                        <span class="titlename">费用合计：</span>
+                        <span class="con">[300元]</span><br>
+                        <span class="titlename">订单状态：</span>
+                        <span class="con">[已完成]</span><br>
+                    </div>
+                </div>             
+            </div>
+
+            <!-- 我的预约-->
+            <div id="Button2" style="display:none;">
+                <div class="appointment" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);">
+                    <a href="农庄url"><img src="../images/town01.jpg" alt="无法加载"/></a>
+
+                    <div class="info1" style="margin-left:5px;">
+                        <span class="titlename">预约单号：</span>
+                        <span class="con">[12345]</span>
+                    </div>
+
+                    <div class="info2" style="margin-left:5px;">
+                        <span class="titlename">预约农庄：</span>
+                        <span class="con">[桃花源农庄]</span><br>
+                        <span class="titlename">农庄地址：</span>
+                        <span class="con">[河源市龙川县贝岭镇]</span><br>
+                        <span class="titlename">农庄电话：</span>
+                        <span class="con">[15626239154]</span><br>
+                    </div>
+
+                    <div class="info3" style="margin-left:5px;">
+                        <span class="titlename">预约人数：</span>
+                        <span class="con">[4]</span><br>
+                        <span class="titlename">下单时间：</span>
+                        <span class="con">[2019-05-05]</span><br>
+                        <span class="titlename">应到时间：</span>
+                        <span class="con">[2019-05-09]</span><br>
+                        <span class="titlename">预约状态：</span>
+                        <span class="con">[已使用]</span><br>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 个人信息 -->
+            <div id="Button3" style="display:none;">
+                <form action="" method="">
+                    <label style="font-size:22px;">用户昵称</label>
+                    <input id=userName type="text" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+                    #484948;color:#050505;"><br><br>
+
+                    <label style="font-size:22px;">电话号码</label>
+                    <input id=userTel type="tel" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+                    #484948;color:#050505;"><br><br>
+
+                    <label style="font-size:22px;">真实姓名</label>
+                    <input id=name type="text" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+                     #484948;color:#050505;"><br><br>
+
+                    <label style="font-size:22px;">用户地址</label>
+                    <textarea rows="3" cols="35"></textarea><br><br>
+
+                    <label style="font-size:22px;">个性签名</label>
+                    <textarea rows="3" cols="35"></textarea><br><br>
+
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" value="1" checked>
+                        <span style="font-size:22px;">男</span>
+                    </label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" value="2">
+                        <span style="font-size:22px;">女</span>
+                    </label>
+                    <br><br><br>
+
+                    <input type="submit" style="font-size:25px;font-weight:bold;width:100px;height:30px; background-color:#57ac6c;
+                        border-radius:5px;color:#f5f8f6;font-size:18px;border:none;" value="保 存">
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

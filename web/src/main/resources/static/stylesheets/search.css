@@ -1,0 +1,44 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+    font-size: 12px;
+    background:url(../images/bg.jpg) #a8fa8f;
+    background-repeat:no-repeat;
+    background-size:100% 100%; 
+    background-attachment: fixed;
+}
+a {
+    text-decoration: none;
+    color: rgb(27, 43, 168);
+}
+
+a:hover,
+a:active {
+    color: rgb(62, 175, 250);
+}
+
+#header {
+    /* text-align: center;
+    font-weight: bold; */
+    overflow: scroll;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+#contentsContainer{
+    width:290px;
+    height:538px;
+    float:right; 
+}
+#mapDiv{
+    width:1040px; 
+    height:520px;
+    margin:5px;
+}
+

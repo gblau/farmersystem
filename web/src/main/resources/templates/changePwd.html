@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"       xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>修改密码</title>
+        <link rel="stylesheet" href="../stylesheets/bootstrap.min.css" />
+        <link rel="stylesheet" href="../stylesheets/changePwd.css" />
+        <script type="text/javascript" src="../javascripts/changePwd.js"></script>
+        <style>
+            body {
+                height: 100%;
+                background:url(../images/bg.jpg) #a8fa8f;
+                background-repeat:no-repeat ;
+                background-size:100% 100%;
+                background-attachment: fixed;
+            }
+            .mycenter{
+                margin-top: 100px;
+                margin-left: auto;
+                margin-right: auto;
+                height: 350px;
+                width:500px;
+                padding: 5%;
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+            .mycenter mysign{
+                width: 440px;
+            }
+            .mycenter input,button{
+                border-radius: 10px;
+                margin-top:2%;
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+            p{
+                text-align: center;
+                margin-top: 1%;
+                font-size: 30px;
+                font-weight: bold;
+                color:rgb(25, 128, 71);
+            }
+        </style>
+    </head>   
+     
+    <body>
+        <p>修改密码</p>
+        <form action="" method="post">
+            <div class="mycenter">
+                <div class="mysign">
+                    <div class="col-lg-10">
+                        <input type="text" id="userName" class="form-control" name="username" placeholder="请输入账号" required autofocus/>
+                    </div>
+                    <div class="col-lg-10">
+                        <input type="text" id="userTel" class="form-control" name="password" placeholder="请输入手机号" required autofocus/>
+                    </div>
+                    <div class="col-lg-10">
+                        <input type="password" id="newPwd" class="form-control" name="password" placeholder="请输入新密码" required autofocus/>
+                    </div>
+                    <div class="col-lg-10">
+                            <input type="password" id="newPwd2" class="form-control" name="password" placeholder="请再次输入新密码" required autofocus/>
+                    </div>
+                    <br>
+                    <div id="error_box"><br></div>
+                    <div class="col-lg-10">
+                        <button type="button" class="btn btn-success col-lg-12" onclick="changePwd_check()">修改密码</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

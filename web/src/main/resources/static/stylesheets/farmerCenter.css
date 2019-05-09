@@ -1,0 +1,129 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-size: 12px;
+    background:url(../images/bg.jpg) #a8fa8f;
+    background-repeat:no-repeat;
+    background-size:100% 100%; 
+    background-attachment: fixed;
+}
+
+.header_box {
+    margin:4px;
+    width: 100%;
+    height: 8%;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    height: 90%;
+}
+
+.left {
+    margin:1px;
+    width: 10%;
+    height: 100%;
+    color: antiquewhite;
+}
+
+.right {
+    margin:4px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #57ac6c;
+    border-radius:15px;
+}
+
+.left_item {
+    width: 100%;
+    height: 50px;
+    background:#57ac6c;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+    color: rgb(27, 43, 168);
+}
+
+a:hover,a:active {
+    color: rgb(62, 175, 250);
+}
+#Button1 {
+    overflow-y:auto;
+    overflow-x:auto;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    margin-top: 30px;
+    margin: 10px;
+}
+#Button2{
+    overflow-y:auto;
+    overflow-x:auto;
+    width:100%;
+    height: 100%;
+    text-align:center;
+    margin-top:30px;
+    margin:10px;
+}
+#Button3{
+    overflow-y:auto;
+    overflow-x:auto;
+    margin-top:100px;
+    width:100%;
+    height: 100%;
+    text-align:center;
+}
+textarea{
+    vertical-align:top;
+    border-radius:6px;
+    border:1.2px solid #484948;
+    color:#050505;
+    text-indent:8px;
+}
+.table {
+    height:35px;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top:10px;
+}
+
+
+
+.table td,.table th {
+    height:40px;
+    border-bottom: none;
+    border-left: none;
+    border-right: 1px solid #B74;
+    border-top: 1px solid #B74;
+
+}
+
+.table tr {
+    border: 1px solid #B74;
+    margin-top:5px;
+}
+.submitBtn{
+    width:50px;
+    height:30px;
+    margin-top:10px;
+	background-color:#57ac6c;
+	border-radius:2px;
+	color:white;
+	font-size:15px;
+	border:none;
+}

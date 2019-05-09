@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"       xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>地理查询信息</title>
+    <!-- <link rel="stylesheet" href="http://js.arcgis.com/3.9/js/dojo/dijit/themes/claro/claro.css"> -->
+    <link rel="stylesheet" href="../stylesheets/claro.css">
+
+     <!-- <link rel="stylesheet" href="http://js.arcgis.com/3.9/js/dojo/dijit/themes/tundra/tundra.css" /> -->
+    <link rel="stylesheet" href="../stylesheets/tundra.css" />
+
+    <!-- <link rel="stylesheet" href="http://js.arcgis.com/3.9/js/esri/css/esri.css" /> -->
+    <link rel="stylesheet" href="../stylesheets/esri.css" />
+
+    <!-- <script src="http://js.arcgis.com/3.9/"></script> -->
+     <script src="../javascripts/init.js"></script>
+    <link rel="stylesheet" href="../stylesheets/search.css" />
+    <script src="../javascripts/search.js"></script>
+</head>
+
+<body class="claro">
+
+    <!--标题及按钮区 -->
+    <div id="header" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'top'" style="height:100px;">
+        <a href="farmerHome.html"><b style="font-size: 20px;font-family: 黑体;margin-left:10px;">⏎返回首页</b> </a><br><br>
+        <span style="font-size: 22px;color:red;font-weight:bold;">温馨提示:</span>
+        <span style="font-size: 20px;">单击</span>
+        <button data-dojo-type="dijit/form/Button" style="border-radius:5px;font-size:16px;">点</button>
+        <button data-dojo-type="dijit/form/Button" style="border-radius:5px;font-size:16px;">面</button>
+        <span style="font-size: 20px;">后在地图中绘制点或面可查询地理信息</span>
+    </div>
+
+    <!-- 右侧信息展示区 -->
+        <div id="contentsContainer">
+        </div>
+
+    <!-- 地图展示区 -->
+    <div id="mapDiv"></div>
+
+    
+</body>
+
+</html>

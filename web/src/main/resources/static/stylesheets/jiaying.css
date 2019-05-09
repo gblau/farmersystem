@@ -1,0 +1,131 @@
+body {
+    height: 100%;
+    width: 95%;
+    overflow: hidden;
+    background: url(../images/jiayingBG.jpg) #a8fa8f;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+
+.left {
+    border: 1px solid rgb(143, 134, 134);
+    border-radius: 5px;
+    float: left;
+    height: 550px;
+    width: 22%;
+    margin-left: 20px;
+}
+
+.right {
+    float: left;
+    border: 1px solid red;
+    height: 550px;
+    width: 935px;
+    margin-left: 50px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.right header {
+    margin: 2px;
+    height: 180px;
+    width: 930px;
+    text-align: center;
+}
+
+.right header img {
+    width: 400px;
+    height: 160px;
+}
+
+.right p {
+    font-weight: bold;
+    font-family: 隶书;
+    font-size: 25px;
+    margin-top: 10px;
+    text-align: center;
+    color: #db0067;
+}
+
+.right ul {
+    margin: 30px auto 0;
+    width: 920px;
+}
+
+.right ul li {
+    width: 220px;
+    height: 200px;
+    border: 1px solid #ccc;
+    background: url("../images/ruzhu01.jpg") 0 0 no-repeat;
+    float: left;
+    margin-right: 8%;
+    margin-top: 30px;
+    position: relative;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.right ul li:nth-child(2) {
+    background-image: url("../images/ruzhu02.jpg");
+}
+
+.right ul li:nth-child(3) {
+    margin-right: 0;
+    background-image: url("../images/ruzhu03.jpg");
+}
+
+.right ul li:nth-child(4) {
+    background-image: url("../images/ruzhu04.jpg");
+}
+
+.right ul li hgroup {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -250px;
+    width: 220px;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.7);
+    transition: all 0.5s ease-in 0s;
+}
+
+.right ul li:hover hgroup {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.right ul li hgroup h2:nth-child(1) {
+    font-size: 22px;
+    text-align: center;
+    /* color:rgb(16, 157, 212); */
+    font-weight: noarmal;
+    margin-top: 58px;
+}
+
+.right ul li hgroup h2:nth-child(2) {
+    font-size: 22px;
+    text-align: center;
+    color: #fff;
+    font-weight: normal;
+    margin-top: 15px;
+}
+
+.right ul li hgroup h2:nth-child(3) {
+    font-size: 20px;
+    text-align: center;
+    color: rgb(219, 32, 32);
+    font-weight: normal;
+    margin-top: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: royalblue;
+}
+
+a:hover {
+    color: blue;
+}

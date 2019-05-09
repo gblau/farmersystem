@@ -1,0 +1,92 @@
+body{
+    width:100%;
+    height:100%;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+.top p{
+    text-align: center;
+    font-weight:bold;
+    font-size:40px;
+    font-family: 隶书;
+    color:rgb(194, 26, 26);
+    margin-top:5px;
+}
+.top span{
+    font-size:25px;
+    font-family:隶书;
+    color:rgb(30, 182, 202);
+    margin-left:10px;
+}
+.top a{
+    color:blue;
+}
+.box {
+    width: 99%;
+    height: 755px;
+    padding: 2px;
+}
+
+.box .box1 {
+    width: 100%;
+    height: 755px;
+    position: relative;
+    overflow: hidden;
+}
+
+.box .box1 .picbox {
+    width:100%;
+    height: 755px;
+    position: relative;
+    display: none;
+}
+
+.box .box1 .picbox img{
+    width: 100%;
+    height: 750px;
+    border-radius:10px;
+
+}
+
+.box1 .picbtn {
+    width: 155px;
+    height: 30px;
+    position: absolute;
+    right: 610px;
+    bottom: 60px;
+}
+
+.box1 .picbtn a {
+    width: 25px;
+    height: 12px;
+    display: block;
+    float: left;
+    margin-right: 5px;
+    background-color: #50f0d8;
+}
+
+.box1 .picbtn a.act {
+    background-color: #FFF;
+} 
+
+.content p{
+    color:rgb(33, 128, 96);
+    font-size:28px;
+    margin-left:20px;
+}
+.content p a{
+    color:blue;
+}
+
+.appointment{
+    border:1px solid rgb(124, 139, 182);
+    margin:1px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.appointment p{
+    color:rgb(23, 122, 161);
+    font-size:30px;
+    text-align:center;
+}
