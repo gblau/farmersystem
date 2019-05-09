@@ -10,8 +10,7 @@
     <module>common</module>
     <module>engine</module>
     <module>web</module>
-      <module>shiro</module>
-      <module>ws</module>
+    <module>shiro</module>
     <module>ws</module>
   </modules>
   <name>house</name>
