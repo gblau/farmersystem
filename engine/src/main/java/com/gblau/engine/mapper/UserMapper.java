@@ -11,7 +11,8 @@ import java.util.Set;
  */
 public interface UserMapper extends Mapper<User> {
     User selectUserByUsername(String username);
-    Set<String> selectRoles(String id);
-    Set<String> selectPermissions(String id);
+    Set<String> selectRoles(Integer id);
+    Set<String> selectPermissions(Integer id);
     List<String> selectPermissionUrl(String principal);
+    List<User> selectAll();
 }

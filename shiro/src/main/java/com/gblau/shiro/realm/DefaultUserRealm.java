@@ -30,7 +30,7 @@ public abstract class DefaultUserRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        String id = (String) principals.getPrimaryPrincipal();
+        Integer id = (Integer) principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         setUserRolesAndPermissions(authorizationInfo, id);
 
@@ -55,7 +55,7 @@ public abstract class DefaultUserRealm extends AuthorizingRealm {
      * @param authorizationInfo
      * @param userId
      */
-    protected abstract void setUserRolesAndPermissions(SimpleAuthorizationInfo authorizationInfo, String userId);
+    protected abstract void setUserRolesAndPermissions(SimpleAuthorizationInfo authorizationInfo, Integer userId);
 
     /**
      * 判断是否存在该用户。

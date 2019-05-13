@@ -5,23 +5,23 @@ package com.gb.common.model.po;
  * @date 2019-05-01
  */
 public class UserRole {
-    String roleId;
-    String userId;
+    Integer roleId;
+    Integer userId;
 
-    public String getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public UserRole setRoleId(String roleId) {
+    public UserRole setRoleId(Integer roleId) {
         this.roleId = roleId;
         return this;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public UserRole setUserId(String userId) {
+    public UserRole setUserId(Integer userId) {
         this.userId = userId;
         return this;
     }

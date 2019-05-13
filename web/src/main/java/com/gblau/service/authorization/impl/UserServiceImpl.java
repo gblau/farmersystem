@@ -7,6 +7,7 @@ import com.gblau.engine.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,11 +29,16 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         return dao.selectUserByUsername(username);
     }
 
-    public Set<String> findRoles(String id) {
+    public Set<String> findRoles(Integer id) {
         return dao.selectRoles(id);
     }
 
-    public Set<String> findPermissions(String id) {
+    public Set<String> findPermissions(Integer id) {
         return dao.selectPermissions(id);
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return dao.selectAll();
     }
 }

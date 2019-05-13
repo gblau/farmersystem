@@ -8,10 +8,10 @@ import java.util.List;
 public interface BaseService<T> {
     void setBaseMapper();
 
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Integer id);
     int insert(T record);
     int insertSelective(T record);
-    T findByPrimaryKey(String id);
+    T findByPrimaryKey(Integer id);
     List<T> findAllElements();
     int updateByPrimaryKey(T record);
     int updateByPrimaryKeySelective(T record);

@@ -16,7 +16,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
     }
 
     @Override
-    public T findByPrimaryKey(String id) {
+    public T findByPrimaryKey(Integer id) {
         return dao.selectByPrimaryKey(id);
     }
 
@@ -26,7 +26,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
     }
 
     @Override
-    public int deleteByPrimaryKey(String id) {
+    public int deleteByPrimaryKey(Integer id) {
         return dao.deleteByPrimaryKey(id);
     }
 

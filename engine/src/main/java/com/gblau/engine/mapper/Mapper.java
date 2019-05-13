@@ -6,10 +6,10 @@ import java.util.List;
  * Created by gblau on 2016-11-12.
  */
 public interface Mapper<T> {
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Integer id);
     int insert(T record);
     int insertSelective(T record);
-    T selectByPrimaryKey(String id);
+    T selectByPrimaryKey(Integer id);
     List<T> selectAllElements();
     int updateByPrimaryKey(T record);
     int updateByPrimaryKeySelective(T record);

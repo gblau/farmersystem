@@ -123,11 +123,12 @@ public class DefaultShiroConfig {
      * md5生成工具，进行两次MD5转换
      * @return
      */
+    @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
-        matcher.setHashAlgorithmName("md5");
-        matcher.setHashIterations(2);
-        matcher.setStoredCredentialsHexEncoded(true);
+        matcher.setHashAlgorithmName("MD5");
+        matcher.setHashIterations(1024);
+        matcher.setStoredCredentialsHexEncoded(true);//转化为16进制(与入库时保持一致)
         return matcher;
     }
 
@@ -136,9 +137,6 @@ public class DefaultShiroConfig {
      * 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的Realm
      * @see AuthorizingRealm
      */
-    public AuthorizingRealm userRealm() {
-        return null;
-    }
 
     @Bean
     public URLPermissionsFilter urlPermissionsFilter() {
