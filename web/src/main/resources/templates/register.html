@@ -66,14 +66,14 @@
                         <input type="password" id="userPwd" class="form-control" name="password" placeholder="请输入密码" required autofocus/>
                     </div>
                     <div class="col-lg-10">
-                        <input type="password" id="pwd" class="form-control" name="password" placeholder="请再次输入密码" required autofocus/>
+                        <input type="password" id="pwd" class="form-control" name="secondPassword" placeholder="请再次输入密码" required autofocus/>
                     </div>
                     <div class="col-lg-10">
                         <input type="text" th:value="${user.phone}" id="userTel" class="form-control" name="usertel" placeholder="请输入手机号" required autofocus/>
                     </div>
                     <div class="radios">
-                        <label class="radio-inline"><input type="radio" name="optradio" th:checked="${roleid}" value="1" checked><span style="color:rgb(138, 16, 16);font-weight:bold;font-size:15px;">我是农户</span></label>
-                        <label class="radio-inline"><input type="radio" name="optradio" th:checked="${roleid}" value="2"><span style="color:rgb(138, 16, 16);font-weight:bold;font-size:15px;">我是顾客</span></label>
+                        <label class="radio-inline"><input type="radio" name="roleid" value="2" checked/> <span style="color:rgb(138, 16, 16);font-weight:bold;font-size:15px;">我是农户</span></label>
+                        <label class="radio-inline"><input type="radio" name="roleid" value="3"/><span style="color:rgb(138, 16, 16);font-weight:bold;font-size:15px;">我是顾客</span></label>
                     </div>
                     <br>
                     <div id="error_box"><br></div>

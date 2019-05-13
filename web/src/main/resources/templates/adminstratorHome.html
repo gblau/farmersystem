@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"       xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
     <head>
         <meta charset="utf-8">
@@ -50,7 +50,6 @@
 
     <body>
         <div style="text-align:center;margin:30px;">
-            <form action="" method="" >
                 <table class="table" id="myTable">
                     <thead>
                         <tr>
@@ -61,17 +60,15 @@
                         </tr>
                     <thead>
                     <tbody id="tb" style="text-align:center">
-                        <tr>
-                            <td>12345</td>
-                            <td>15626239154</td>
-                            <td>骆世杰</td>
-                            <td><input type='button' value=' 删 除 '></td>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.id}"><input name="userId" th:value="${user.id}" type="hidden"></td>
+                            <td th:text="${user.phone}"></td>
+                            <td th:text="${user.username}">骆世杰</td>
+                            <td><input type='button' value=' 删 除 ' th:onclick="'window.location.href = \'' + @{/deleteUser(userId=${user.id})} + '\''"/></td>
                         </tr>
                     </tbody>
                 </table>
-                <input type="submit" value="保 存" class="submitBtn"/>
-            </form>    
-        </div>        
+        </div>
     </body>
 
 </html>
