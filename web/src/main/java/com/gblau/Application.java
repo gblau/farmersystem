@@ -28,7 +28,10 @@ public class Application {
     @Bean
     public FilterRegistrationBean filterRegistrationBean(@Qualifier("characterEncodingFilter") CharacterEncodingFilter filter) {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        registrationBean.setFilter(filter);
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setForceEncoding(true);
+        characterEncodingFilter.setEncoding("UTF-8");
+        registrationBean.setFilter(characterEncodingFilter);
         return registrationBean;
     }
 }

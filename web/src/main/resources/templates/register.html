@@ -55,7 +55,7 @@
     </head>
      
     <body>
-        <form th:action="@{/regist}" method="post">
+        <form th:action="@{/regist}" method="post" accept-charset="UTF-8">
             <p>请您注册</p>
             <div class="mycenter">
                 <div class="mysign">
@@ -76,7 +76,7 @@
                         <label class="radio-inline"><input type="radio" name="roleid" value="3"/><span style="color:rgb(138, 16, 16);font-weight:bold;font-size:15px;">我是顾客</span></label>
                     </div>
                     <br>
-                    <div id="error_box"><br></div>
+                    <div id="error_box"><span style="font-size: 12px;color: red" th:text="${error}" aria-describedby="basic-addon0"></span><br></div>
                     <div class="col-lg-10">
                         <button type="submit" class="btn btn-success col-lg-12" >注册</button>
                     </div>
