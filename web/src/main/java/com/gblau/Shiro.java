@@ -3,7 +3,9 @@ package com.gblau;
 import com.gblau.common.shiro.UserRealm;
 import com.gblau.shiro.DefaultShiroConfig;
 import com.gblau.shiro.realm.DefaultUserRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.realm.AuthorizingRealm;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -21,9 +23,10 @@ public class Shiro extends DefaultShiroConfig {
      */
     @Bean
     @DependsOn(value="lifecycleBeanPostProcessor")
-    public AuthorizingRealm userRealm() {
+    public AuthorizingRealm userRealm(@Qualifier("hashedCredentialsMatcher") HashedCredentialsMatcher hashedCredentialsMatcher) {
         UserRealm userRealm = new UserRealm();
         userRealm.setCacheManager(cacheManager());
+        userRealm.setCredentialsMatcher(hashedCredentialsMatcher);
         return userRealm;
     }
 }
