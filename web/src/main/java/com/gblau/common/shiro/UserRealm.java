@@ -24,12 +24,12 @@ public class UserRealm extends DefaultUserRealm {
      * 通过userId，设置该用户的角色和所拥有的权限
      *
      * @param authorizationInfo
-     * @param userId
+     * @param username
      */
     @Override
-    protected void setUserRolesAndPermissions(SimpleAuthorizationInfo authorizationInfo, Integer userId) {
-        authorizationInfo.setRoles(userService.findRoles(userId));
-        authorizationInfo.setStringPermissions(userService.findPermissions(userId));
+    protected void setUserRolesAndPermissions(SimpleAuthorizationInfo authorizationInfo, String username) {
+        authorizationInfo.setRoles(userService.findRoles(username));
+        authorizationInfo.setStringPermissions(userService.findPermissions(username));
     }
 
     @Override

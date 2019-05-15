@@ -5,11 +5,14 @@ import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.AnonymousFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.DelegatingFilterProxy;
@@ -74,10 +77,10 @@ public class DefaultShiroConfig {
          * authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter
          */
         Map<String, String> chains = new HashMap<>();
-        chains.put("/**","anon");
+        //chains.put("/**","authc");
         chains.put("/logout", "anon");
         chains.put("/login", "anon");
-        chains.put("/unauthor", "anon");
+        chains.put("/regist", "anon");
         /*
         chains.put("/base*//**", "anon");
          chains.put("/css*//**", "anon");
@@ -98,10 +101,34 @@ public class DefaultShiroConfig {
     @Bean
     public DefaultWebSecurityManager securityManager(@Qualifier("userRealm") AuthorizingRealm realm) {
         DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
-        manager.setRealm(realm);
         manager.setCacheManager(cacheManager());
         manager.setSessionManager(defaultWebSessionManager());
+        manager.setRealm(realm);
         return manager;
+    }
+
+    /**
+     * 开启 shiro 注解
+     * @param securityManager
+     * @return
+     */
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
+        return authorizationAttributeSourceAdvisor;
+    }
+
+    /**
+     * 开启 shiro 注解
+     * @return
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator defaultAAP = new DefaultAdvisorAutoProxyCreator();
+        defaultAAP.setProxyTargetClass(true);
+        return defaultAAP;
     }
 
     /**

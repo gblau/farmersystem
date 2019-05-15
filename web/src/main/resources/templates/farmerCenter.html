@@ -10,7 +10,7 @@
 
     <!-- 头部标题栏 -->
     <div class="header_box">
-        <a href="farmerHome.html"><b style="font-size:20px;font-family: 黑体;margin-left:10px;">⏎返回首页</b> </a>
+        <a th:href="@{/farmer/home}"><b style="font-size:20px;font-family: 黑体;margin-left:10px;">⏎返回首页</b> </a>
         <p style="text-align: center;font-weight:bold;font-size:40px;font-family: 隶书;color:rgb(12, 158, 77);margin-top:-5px;">农户中心</p>
     </div>
 
@@ -33,7 +33,7 @@
         <div class="right">
             <!-- 我的农庄 -->
             <div id="Button1" style="display:none">
-                <form action="" method="" >
+                <form th:action="@{/changepwd}" method="post" >
                     <table class="table">
                         <thead>
                             <tr>
@@ -48,8 +48,7 @@
                             <tr></tr>
                         </tbody>
                     </table>
-                    <input type="submit" value="提 交" class="submitBtn"/>
-                </form>    
+                </form>
             </div>
 
             <!-- 我的店铺 -->
@@ -76,35 +75,38 @@
 
             <!-- 个人信息 -->
             <div id="Button3" style="display:none;">
-                <form action="" method="">
+                <form th:action="@{/updateUser}" method="post">
                     <label style="font-size:22px;">用户昵称</label>
-                    <input id="userName" type="text" 
+                    <input id="id" type="hidden" name="id" th:value="${session.currentUser.id}"
+                           style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+                    #484948;color:#050505;">
+                    <input id="userName" type="text" name="username" th:value="${session.currentUser.username}"
                     style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
                     #484948;color:#050505;"><br><br>
 
                     <label style="font-size:22px;">电话号码</label>
-                    <input id="userTel" type="tel"
+                    <input id="userTel" type="tel" name="phone" th:value="${session.currentUser.phone}"
                     style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
                     #484948;color:#050505;"><br><br>
 
                     <label style="font-size:22px;">真实姓名</label>
-                    <input id="name" type="text" 
+                    <input id="name" type="text" name="account" th:value="${session.currentUser.account}"
                      style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
                      #484948;color:#050505;"><br><br>
 
                     <label style="font-size:22px;">用户地址</label>
-                    <textarea rows="3" cols="35"></textarea><br><br>
+                    <textarea rows="3" cols="35" name="address" th:value="${session.currentUser.address}"></textarea><br><br>
 
                     <label style="font-size:22px;">个人简介</label>
-                    <textarea rows="3" cols="35"></textarea><br><br>
+                    <textarea rows="3" cols="35" name="message" th:value="${session.currentUser.message}"></textarea><br><br>
 
                     <label class="radio-inline">
-                        <input type="radio" name="sex" value="1" checked>
+                        <input type="radio" name="sex" value="1" th:attr="checked=${session.currentUser.sex == 1?true:false}">
                         <span style="font-size:22px;">男</span>
                     </label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <label class="radio-inline">
-                        <input type="radio" name="sex" value="2">
+                        <input type="radio" name="sex" value="2" th:attr="checked=${session.currentUser.sex == 2?true:false}">
                         <span style="font-size:22px;">女</span>
                     </label>
                     <br><br><br>

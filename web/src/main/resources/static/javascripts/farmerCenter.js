@@ -29,8 +29,8 @@ function myInfo() {
 function add() {
         var trObj = document.createElement("tr");
         trObj.id = new Date().getTime();
-        
-        trObj.innerHTML = "<style>.stock{height:35px;width:115px;border-radius:3px;border:1.2px solid #484948;color:#050505;text-indent:3px;}" 
+
+        trObj.innerHTML = "<style>.stock{height:35px;width:115px;border-radius:3px;border:1.2px solid #484948;color:#050505;text-indent:3px;}"
         +".address{height:35px;border-radius:3px;border:1.2px solid #484948;color:#050505;text-indent:3px;width:540px;}"
         +".name{height:35px;width:115px;border-radius:3px;border:1.2px solid #484948;color:#050505;text-indent:3px;}"
         +".des{height:35px;width:295px;border-radius:3px;border:1.2px solid #484948;color:#050505;text-indent:3px;}"
@@ -39,7 +39,7 @@ function add() {
         +"<td><input class='stock' type='text' name='stock'/></td>"
         +"<td><input class='address' name='address'/></td>"
         +"<td><input class='des' type='text' name='description'/></td>"
-        +"<td><input type='button' value=' 删 除 ' onclick='del(this)'></td>";
+        +"<td><input type='submit' value='提 交'/><input type='button' value=' 删 除 ' onclick='del(this)'></td>";
 
         document.getElementById("tb").appendChild(trObj);
     }
