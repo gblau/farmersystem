@@ -159,9 +159,9 @@ public class UserController extends BaseController {
             return modelAndView;
 
         if (currentUser.getAthority() == 2)
-            modelAndView.setViewName("farmerCenter");
+            modelAndView.setViewName("redirect:farmer/farmerCenter");
         else
-            modelAndView.setViewName("customerCenter");
+            modelAndView.setViewName("redirect:farmer/customerCenter");
         return modelAndView;
     }
 
