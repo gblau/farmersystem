@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public interface UserService extends BaseService<User> {
     User findUserByUsername(String username);
-    Set<String> findRoles(Integer id);
-    Set<String> findPermissions(Integer id);
+    Set<String> findRoles(String username);
+    Set<String> findPermissions(String username);
     List<User> findAllUsers();
 }

@@ -29,12 +29,12 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         return dao.selectUserByUsername(username);
     }
 
-    public Set<String> findRoles(Integer id) {
-        return dao.selectRoles(id);
+    public Set<String> findRoles(String username) {
+        return dao.selectRoles(username);
     }
 
-    public Set<String> findPermissions(Integer id) {
-        return dao.selectPermissions(id);
+    public Set<String> findPermissions(String username) {
+        return dao.selectPermissions(username);
     }
 
     @Override
