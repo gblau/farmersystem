@@ -324,4 +324,20 @@ public class User {
     public void setAthority(Integer athority) {
         this.athority = athority;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", message='" + message + '\'' +
+                ", sex='" + sex + '\'' +
+                ", address='" + address + '\'' +
+                ", account='" + account + '\'' +
+                ", athority=" + athority +
+                '}';
+    }
 }
