@@ -1,7 +1,7 @@
 package com.gb.common.handler;
 
-import com.gb.common.util.Log;
 import com.gb.common.model.vo.ResponseModel;
+import com.gb.common.util.Log;
 import org.slf4j.Logger;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.ResponseEntity.*;
+import static org.springframework.http.ResponseEntity.badRequest;
+import static org.springframework.http.ResponseEntity.status;
 
 /**
  * 全局Controller异常捕捉类
