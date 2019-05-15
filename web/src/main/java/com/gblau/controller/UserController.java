@@ -10,6 +10,7 @@ import com.gblau.service.authorization.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
@@ -50,7 +52,10 @@ public class UserController extends BaseController {
      * @return
      */
     @PostMapping("/login")
-    public ModelAndView login(ModelAndView modelAndView, @Valid User currentUser, BindingResult bindingResult){
+    public ModelAndView login(ModelAndView modelAndView,
+                              @Valid User currentUser,
+                              BindingResult bindingResult,
+                              HttpSession session){
         Log.info("username: {}", currentUser.getUsername());
         modelAndView.setViewName("login");
         if(bindingResult.hasErrors()){
@@ -64,8 +69,10 @@ public class UserController extends BaseController {
         try {
             Subject subject = SecurityUtils.getSubject();
             subject.login(token);
-            if (subject.isAuthenticated())
+            if (subject.isAuthenticated()) {
+                session.setAttribute("currentUser", userService.findUserByUsername(currentUser.getUsername()));
                 return skipHomeByRole(modelAndView, currentUser.getUsername());
+            }
             else
                 throw new AuthenticationException();
         } catch (AuthenticationException e) {
@@ -82,11 +89,11 @@ public class UserController extends BaseController {
                 return getAllUser(modelAndView);
             }
             case 2: {
-                modelAndView.setViewName("farmerHome");
+                modelAndView.setViewName("redirect:farmer/home");
                 break;
             }
             case 3: {
-                modelAndView.setViewName("customerHome");
+                modelAndView.setViewName("redirect:customer/home");
                 break;
             }
         }
@@ -139,6 +146,22 @@ public class UserController extends BaseController {
 
         modelAndView.addObject("error", "注册成功");
         modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
+    @PostMapping("/updateUser")
+    @RequiresAuthentication
+    public ModelAndView updateUser(ModelAndView modelAndView, User user, HttpSession session) {
+        Log.warn("更新用户信息 {}", user);
+        userService.updateByPrimaryKeySelective(user);
+        User currentUser = (User) session.getAttribute("currentUser");
+        if (currentUser == null)
+            return modelAndView;
+
+        if (currentUser.getAthority() == 2)
+            modelAndView.setViewName("farmerCenter");
+        else
+            modelAndView.setViewName("customerCenter");
         return modelAndView;
     }
 
