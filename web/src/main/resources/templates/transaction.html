@@ -37,98 +37,90 @@
         <!-- 右侧div块 -->
         <div class="right">
             <!-- 未处理订单-->
-            <div id="Button1" style="display:none;">
-                    <form action="" method="" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);">
-                        <div class="todoOrder" >
-                            <img src="../images/caomei01.jpg" alt="无法加载"/>
-                                <span class="titlename">订单编号：</span>
-                                <span class="con">[12345]</span><br>
-                                <span class="titlename">商品名称：</span>
-                                <span class="con">[高级草莓]</span><br>
-                                <span class="titlename">商品数量：</span>
-                                <span class="con">[200]</span><br>
-                                <span class="titlename">买家姓名：</span>
-                                <span class="con">[骆世杰]</span><br>
-                                <span class="titlename">买家电话：</span>
-                                <span class="con">[15626239154]</span><br>
-                                <span class="titlename">买家地址：</span>
-                                <span class="con">[广州市广工]</span><br>
-                                <span class="titlename">费用合计：</span>
-                                <span class="con">[300元]</span><br>
-                        </div> 
-                        <div class="process" style="text-align:center;">
-                            <input type="submit" value="接 受">
-                            <input type="submit" value="拒 绝">
-                        </div>
-                    </form>
+            <div id="Button1"  style="display:none;">
+                <div class="todoOrder" th:each="order:${notAcceptedOrders}">
+                    <img src="../images/caomei01.jpg" alt="无法加载"/>
+                    <span class="titlename">订单编号：</span>
+                    <span class="con" th:text="${order['id']}"></span><br>
+                    <span class="titlename">商品名称：</span>
+                    <span class="con" th:text="${order['name']}"></span><br>
+                    <span class="titlename">商品数量：</span>
+                    <span class="con" th:text="${order['num']}"></span><br>
+                    <span class="titlename">买家姓名：</span>
+                    <span class="con" th:text="${order['customerName']}"></span><br>
+                    <span class="titlename">买家电话：</span>
+                    <span class="con" th:text="${order['customerPhone']}"></span><br>
+                    <span class="titlename">买家地址：</span>
+                    <span class="con" th:text="${order['customerAddress']}"></span><br>
+                    <div class="process" style="text-align:center;">
+                        <input type="button" value="接 受" th:onclick="'window.location.href = \'' + @{/farmer/updateOrder(id=${order['id']}, isAccepted=1)} + '\''"/>
+                        <input type="button" value="拒 绝" th:onclick="'window.location.href = \'' + @{/farmer/deleteOrder(orderId=${order['id']})} + '\''">
+                    </div>
                 </div>
+            </div>
 
             <!-- 未处理预约-->
             <div id="Button2" style="display:none;">
-                <form action="" method="" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);">
-                    <div class="todoAppointment" >
-                        <img src="../images/town01.jpg" alt="无法加载"/>
-                            <span class="titlename">预约单号：</span>
-                            <span class="con">[12345]</span><br>
-                            <span class="titlename">顾客姓名：</span>
-                            <span class="con">[骆世杰]</span><br>
-                            <span class="titlename">顾客电话：</span>
-                            <span class="con">[15626239154]</span><br>  
-                            <span class="titlename">顾客地址：</span>
-                            <span class="con">[广州市广工]</span><br>                                                     
-                            <span class="titlename">预约时间：</span>
-                            <span class="con">[2019-05-05]</span><br>
-                            <span class="titlename">应到时间：</span>
-                            <span class="con">[2019-05-06]</span><br>
-                            <span class="titlename">预约人数：</span>
-                            <span class="con">[4]</span><br>
-                    </div> 
+                <div class="todoAppointment" th:each="appointment:${notAcceptedAppointments}">
+                    <img src="../images/town01.jpg" alt="无法加载"/>
+                    <span class="titlename">预约单号：</span>
+                    <span class="con" th:text="${appointment['id']}">[12345]</span><br>
+                    <span class="titlename">顾客姓名：</span>
+                    <span class="con" th:text="${appointment['customerName']}">[骆世杰]</span><br>
+                    <span class="titlename">顾客电话：</span>
+                    <span class="con" th:text="${appointment['customerPhone']}">[15626239154]</span><br>
+                    <span class="titlename">顾客地址：</span>
+                    <span class="con" th:text="${appointment['customerAddress']}">[广州市广工]</span><br>
+                    <span class="titlename">预约时间：</span>
+                    <span class="con" th:text="${appointment['time']}">[2019-05-05]</span><br>
+                    <span class="titlename">应到时间：</span>
+                    <span class="con" th:text="${appointment['arrival']}">[2019-05-06]</span><br>
+                    <span class="titlename">预约人数：</span>
+                    <span class="con" th:text="${appointment['person']}">[4]</span><br>
                     <div class="process" style="text-align:center;">
-                        <input type="submit" value="接 受">
-                        <input type="submit" value="拒 绝">
+                        <input type="button" value="接 受" th:onclick="'window.location.href = \'' + @{/farmer/updateAppointment(id=${appointment['id']}, isAccepted=1)} + '\''">
+                        <input type="button" value="拒 绝" th:onclick="'window.location.href = \'' + @{/farmer/deleteAppointment(appointmentId=${appointment['id']})} + '\''">
                     </div>
-                </form>
+                </div>
             </div>
 
             <!-- 已处理订单 -->
             <div id="Button3" style="display:none;">
-                <div class="doneOrder" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);">
+                <div class="doneOrder" th:each="order:${acceptedOrders}" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);">
                     <img src="../images/caomei01.jpg" alt="无法加载"/>
-                        <span class="titlename">订单编号：</span>
-                        <span class="con">[12345]</span><br>
-                        <span class="titlename">商品名称：</span>
-                        <span class="con">[高级草莓]</span><br>
-                        <span class="titlename">商品数量：</span>
-                        <span class="con">[200]</span><br>
-                        <span class="titlename">买家姓名：</span>
-                        <span class="con">[骆世杰]</span><br>
-                        <span class="titlename">买家电话：</span>
-                        <span class="con">[15626239154]</span><br>
-                        <span class="titlename">买家地址：</span>
-                        <span class="con">[广州市广工]</span><br>
-                        <span class="titlename">费用合计：</span>
-                        <span class="con">[300元]</span><br>
-                </div> 
+                    <span class="titlename">订单编号：</span>
+                    <span class="con" th:text="${order['id']}"></span><br>
+                    <span class="titlename">商品名称：</span>
+                    <span class="con" th:text="${order['name']}"></span><br>
+                    <span class="titlename">商品数量：</span>
+                    <span class="con" th:text="${order['num']}"></span><br>
+                    <span class="titlename">买家姓名：</span>
+                    <span class="con" th:text="${order['customerName']}"></span><br>
+                    <span class="titlename">买家电话：</span>
+                    <span class="con" th:text="${order['customerPhone']}"></span><br>
+                    <span class="titlename">买家地址：</span>
+                    <span class="con" th:text="${order['customerAddress']}"></span><br>
+                </div>
             </div>
 
             <!-- 已处理预约 -->
             <div id="Button4" style="display:none;">
-                <div class="doneAppointment" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);">
+                <div class="doneAppointment" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);" th:each="appointment:${acceptedAppointments}">
                     <img src="../images/town01.jpg" alt="无法加载"/>
-                        <span class="titlename">预约单号：</span>
-                        <span class="con">[12345]</span><br>
-                        <span class="titlename">顾客姓名：</span>
-                        <span class="con">[骆世杰]</span><br>
-                        <span class="titlename">顾客电话：</span>
-                        <span class="con">[15626239154]</span><br>  
-                        <span class="titlename">顾客地址：</span>
-                        <span class="con">[广州市广工]</span><br>                                                     
-                        <span class="titlename">预约时间：</span>
-                        <span class="con">[2019-05-05]</span><br>
-                        <span class="titlename">应到时间：</span>
-                        <span class="con">[2019-05-06]</span><br>
-                        <span class="titlename">预约人数：</span>
-                        <span class="con">[4]</span><br>
+                    <span class="titlename">预约单号：</span>
+                    <span class="con" th:text="${appointment['id']}">[12345]</span><br>
+                    <span class="titlename">顾客姓名：</span>
+                    <span class="con" th:text="${appointment['customerName']}">[骆世杰]</span><br>
+                    <span class="titlename">顾客电话：</span>
+                    <span class="con" th:text="${appointment['customerPhone']}">[15626239154]</span><br>
+                    <span class="titlename">顾客地址：</span>
+                    <span class="con" th:text="${appointment['customerAddress']}">[广州市广工]</span><br>
+                    <span class="titlename">预约时间：</span>
+                    <span class="con" th:text="${appointment['time']}">[2019-05-05]</span><br>
+                    <span class="titlename">应到时间：</span>
+                    <span class="con" th:text="${appointment['arrival']}">[2019-05-06]</span><br>
+                    <span class="titlename">预约人数：</span>
+                    <span class="con" th:text="${appointment['person']}">[4]</span><br>
                 </div> 
             </div>
         </div>

@@ -10,7 +10,7 @@ public interface Mapper<T> {
     int insert(T record);
     int insertSelective(T record);
     T selectByPrimaryKey(Integer id);
-    List<T> selectAllElements();
+    List<T> selectAll();
     int updateByPrimaryKey(T record);
     int updateByPrimaryKeySelective(T record);
 }

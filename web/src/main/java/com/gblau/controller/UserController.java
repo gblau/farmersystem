@@ -157,11 +157,13 @@ public class UserController extends BaseController {
         User currentUser = (User) session.getAttribute("currentUser");
         if (currentUser == null)
             return modelAndView;
+        user.setAthority(currentUser.getAthority());
+        session.setAttribute("currentUser", user);
 
         if (currentUser.getAthority() == 2)
             modelAndView.setViewName("redirect:farmer/farmerCenter");
         else
-            modelAndView.setViewName("redirect:farmer/customerCenter");
+            modelAndView.setViewName("redirect:customer/customerCenter");
         return modelAndView;
     }
 

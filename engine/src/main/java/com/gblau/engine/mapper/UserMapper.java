@@ -14,5 +14,4 @@ public interface UserMapper extends Mapper<User> {
     Set<String> selectRoles(String username);
     Set<String> selectPermissions(String username);
     List<String> selectPermissionUrl(String principal);
-    List<User> selectAll();
 }

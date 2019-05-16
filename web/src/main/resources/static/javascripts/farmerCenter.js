@@ -36,9 +36,9 @@ function add() {
         +".des{height:35px;width:295px;border-radius:3px;border:1.2px solid #484948;color:#050505;text-indent:3px;}"
         +"</style>"
         +"<td><input class='name' type='text' name='name'/></td>"
-        +"<td><input class='stock' type='text' name='stock'/></td>"
+        +"<td><input class='maxPerson' type='text' name='stock'/></td>"
         +"<td><input class='address' name='address'/></td>"
-        +"<td><input class='des' type='text' name='description'/></td>"
+        +"<td><input class='introduction' type='text' name='description'/></td>"
         +"<td><input type='submit' value='提 交'/><input type='button' value=' 删 除 ' onclick='del(this)'></td>";
 
         document.getElementById("tb").appendChild(trObj);

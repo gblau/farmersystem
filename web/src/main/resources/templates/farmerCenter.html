@@ -33,7 +33,7 @@
         <div class="right">
             <!-- 我的农庄 -->
             <div id="Button1" style="display:none">
-                <form th:action="@{/changepwd}" method="post" >
+                <form th:action="@{/farmer/addTown}" method="post" >
                     <table class="table">
                         <thead>
                             <tr>
@@ -45,7 +45,13 @@
                             </tr>
                         <thead>
                         <tbody id="tb" style="text-align:center">
-                            <tr></tr>
+                        <tr th:each="town : ${towns}">
+                            <td th:text="${town.id}"><input name="townId" th:value="${town.id}" type="hidden"></td>
+                            <td th:text="${town.name}"></td>
+                            <td th:text="${town.maxPerson}"></td>
+                            <td th:text="${town.address}"></td>
+                            <td><input type='button' value=' 删 除 ' th:onclick="'window.location.href = \'' + @{/farmer/deleteTown(townId=${town.id})} + '\''"/></td>
+                        </tr>
                         </tbody>
                     </table>
                 </form>
@@ -53,7 +59,7 @@
 
             <!-- 我的店铺 -->
             <div id="Button2" style="display:none">
-                <form action="" method="" >
+                <form th:action="@{/farmer/addGood}" method="post">
                    <table class="table">
                         <thead>
                             <tr>
@@ -65,9 +71,15 @@
                                 <th width="10%"><input type="button" value="单击添加项.." onclick="add01()"> </th>
                             </tr>
                         <thead>
-                        <tbody id="tb01" style="text-align:center">
-                            <tr></tr>
-                        </tbody>
+                       <tbody id="tb01" style="text-align:center">
+                       <tr th:each="good : ${goods}">
+                           <td th:text="${good.id}"><input name="goodId" th:value="${good.id}" type="hidden"></td>
+                           <td th:text="${good.price}"></td>
+                           <td th:text="${good.stock}"></td>
+                           <td th:text="${good.description}"></td>
+                           <td><input type='button' value=' 删 除 ' th:onclick="'window.location.href = \'' + @{/farmer/deleteGood(goodId=${good.id})} + '\''"/></td>
+                       </tr>
+                       </tbody>
                     </table>
                     <input type="submit" value="提 交" class="submitBtn"/>
                 </form>
@@ -95,18 +107,18 @@
                      #484948;color:#050505;"><br><br>
 
                     <label style="font-size:22px;">用户地址</label>
-                    <textarea rows="3" cols="35" name="address" th:value="${session.currentUser.address}"></textarea><br><br>
+                    <input cols="35" name="address" th:value="${session.currentUser.address}"/><br><br>
 
                     <label style="font-size:22px;">个人简介</label>
-                    <textarea rows="3" cols="35" name="message" th:value="${session.currentUser.message}"></textarea><br><br>
+                    <input cols="35" name="message" th:value="${session.currentUser.message}"/><br><br>
 
                     <label class="radio-inline">
-                        <input type="radio" name="sex" value="1" th:attr="checked=${session.currentUser.sex == 1?true:false}">
+                        <input type="radio" name="sex" value="1" th:checked="${session.currentUser.sex eq '1'}">
                         <span style="font-size:22px;">男</span>
                     </label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <label class="radio-inline">
-                        <input type="radio" name="sex" value="2" th:attr="checked=${session.currentUser.sex == 2?true:false}">
+                        <input type="radio" name="sex" value="2" th:checked="${session.currentUser.sex eq '2'}">
                         <span style="font-size:22px;">女</span>
                     </label>
                     <br><br><br>

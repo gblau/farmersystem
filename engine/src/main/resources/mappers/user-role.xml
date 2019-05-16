@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gblau.engine.mapper.UserRoleMapper">
-    <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.gb.common.model.po.UserRole" useGeneratedKeys="true" keyProperty="id">
         insert into user_role values(NULL, #{userId},#{roleId})
     </insert>
 
-    <update id="updateByPrimaryKey" parameterType="User">
+    <update id="updateByPrimaryKey" parameterType="com.gb.common.model.po.UserRole">
         update user
         <set>
             <if test="userId != 'null'">user_id =#{userId}</if>
@@ -18,7 +18,7 @@
         DELETE FROM user_role WHERE id=#{id};
     </delete>
 
-    <select id="selectByPrimaryKey" parameterType="String" resultType="User">
+    <select id="selectByPrimaryKey" parameterType="String" resultType="com.gb.common.model.po.UserRole">
         SELECT * FROM user_role WHERE id=#{id};
     </select>
 </mapper>

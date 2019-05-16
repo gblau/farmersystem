@@ -22,7 +22,7 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 
     @Override
     public List<T> findAllElements() {
-        return dao.selectAllElements();
+        return dao.selectAll();
     }
 
     @Override
