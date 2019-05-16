@@ -7,6 +7,8 @@ import com.gblau.service.base.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author gblau
  * @date 2019-05-07
@@ -20,5 +22,10 @@ public class GoodServiceImpl extends BaseServiceImpl<Good> implements GoodServic
     @Override
     public void setBaseMapper() {
         super.setDataAccessObject(dao);
+    }
+
+    @Override
+    public List<Good> findByStore(Integer storeId) {
+        return dao.selectByStore(storeId);
     }
 }

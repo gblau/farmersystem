@@ -28,38 +28,14 @@
             <img src="../images/youhuiHeader.jpg">
             <p>新店酬宾 优惠力度 前所未有 欢迎选购</p>
         </header>
-        <ul>
+        <ul th:each="good:${goods}">
             <li>
                 <hgroup>
-                     <a href="amin01-1.html"><h2>优质火鸡</h2></a>
+                    <a th:href="@{/shop/amin11}"><h2 th:text="${good.name}"></h2></a>
                     <h2>肉质鲜嫩 品质上乘</h2>
                     <h2>欢迎选购</h2>
                 </hgroup>
             </li>
-
-            <li>
-                <hgroup>
-                    <a href="#"><h2>白骨顶鸡</h2></a>
-                    <h2>肉质鲜美 爽滑美味</h2>
-                    <h2>欢迎选购</h2>
-                </hgroup>
-            </li>
-            
-            <li>
-                <hgroup>
-                     <a href="#"><h2>家养鸡蛋</h2></a>
-                    <h2>清香沁脾 美味可口</h2>
-                    <h2>欢迎选购</h2>
-                </hgroup>
-            </li>
-            <li>
-                <hgroup>
-                     <a href="#"><h2>七彩山鸡</h2></a>
-                    <h2>肉质鲜嫩 美味可口</h2>
-                    <h2>欢迎选购</h2>
-                </hgroup>
-            </li>
-
         </ul>
 
     </div>
