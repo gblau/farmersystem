@@ -201,7 +201,7 @@ public class Order {
      *
      * @mbggenerated Thu May 16 17:34:09 CST 2019
      */
-    public Byte getIsAccepted() {
+    public Byte isAccepted() {
         return isAccepted;
     }
 

@@ -29,46 +29,15 @@
             <img src="../images/youhuiHeader.jpg">
             <p>老店酬宾 优惠力度 前所未有 欢迎选购</p>
         </header>
-        <ul>
+
+        <ul th:each="good:${goods}">
             <li>
                 <hgroup>
-                    <a href="#">
-                        <h2>绿色白菜</h2>
-                    </a>
+                    <a th:href="@{'/shop/amin21?goodId='+${good.id}}"><h2 th:text="${good.name}"></h2></a>
                     <h2>天然施肥 品质上乘</h2>
                     <h2>欢迎选购</h2>
                 </hgroup>
             </li>
-
-            <li>
-                <hgroup>
-                    <a href="#">
-                        <h2>夏黑葡萄</h2>
-                    </a>
-                    <h2>鲜甜多汁 营养丰富</h2>
-                    <h2>欢迎选购</h2>
-                </hgroup>
-            </li>
-
-            <li>
-                <hgroup>
-                    <a href="#">
-                        <h2>天然番茄</h2>
-                    </a>
-                    <h2>出天然 无污染</h2>
-                    <h2>欢迎选购</h2>
-                </hgroup>
-            </li>
-            <li>
-                <hgroup>
-                    <a href="#">
-                        <h2>鲜甜西瓜</h2>
-                    </a>
-                    <h2>皮薄肉厚 多汁甘甜</h2>
-                    <h2>欢迎选购</h2>
-                </hgroup>
-            </li>
-
         </ul>
 
     </div>

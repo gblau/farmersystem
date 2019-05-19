@@ -39,7 +39,7 @@
             <!-- 未处理订单-->
             <div id="Button1"  style="display:none;">
                 <div class="todoOrder" th:each="order:${notAcceptedOrders}">
-                    <img src="../images/caomei01.jpg" alt="无法加载"/>
+                    <img th:src="@{${order['image']}}" width="100" height="100" alt="无法加载"/>
                     <span class="titlename">订单编号：</span>
                     <span class="con" th:text="${order['id']}"></span><br>
                     <span class="titlename">商品名称：</span>
@@ -54,7 +54,7 @@
                     <span class="con" th:text="${order['customerAddress']}"></span><br>
                     <div class="process" style="text-align:center;">
                         <input type="button" value="接 受" th:onclick="'window.location.href = \'' + @{/farmer/updateOrder(id=${order['id']}, isAccepted=1)} + '\''"/>
-                        <input type="button" value="拒 绝" th:onclick="'window.location.href = \'' + @{/farmer/deleteOrder(orderId=${order['id']})} + '\''">
+                        <input type="button" value="拒 绝" th:onclick="'window.location.href = \'' + @{/farmer/updateOrder(id=${order['id']}, isAccepted=2)} + '\''">
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
             <!-- 未处理预约-->
             <div id="Button2" style="display:none;">
                 <div class="todoAppointment" th:each="appointment:${notAcceptedAppointments}">
-                    <img src="../images/town01.jpg" alt="无法加载"/>
+                    <img th:src="@{${appointment['image']}}" width="100" height="100" alt="无法加载"/>
                     <span class="titlename">预约单号：</span>
                     <span class="con" th:text="${appointment['id']}">[12345]</span><br>
                     <span class="titlename">顾客姓名：</span>
@@ -79,7 +79,7 @@
                     <span class="con" th:text="${appointment['person']}">[4]</span><br>
                     <div class="process" style="text-align:center;">
                         <input type="button" value="接 受" th:onclick="'window.location.href = \'' + @{/farmer/updateAppointment(id=${appointment['id']}, isAccepted=1)} + '\''">
-                        <input type="button" value="拒 绝" th:onclick="'window.location.href = \'' + @{/farmer/deleteAppointment(appointmentId=${appointment['id']})} + '\''">
+                        <input type="button" value="拒 绝" th:onclick="'window.location.href = \'' + @{/farmer/updateAppointment(id=${appointment['id']}, isAccepted=2)} + '\''">
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
             <!-- 已处理预约 -->
             <div id="Button4" style="display:none;">
                 <div class="doneAppointment" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);" th:each="appointment:${acceptedAppointments}">
-                    <img src="../images/town01.jpg" alt="无法加载"/>
+                    <img th:src="@{${appointment['image']}}" width="100" height="100" alt="无法加载"/>
                     <span class="titlename">预约单号：</span>
                     <span class="con" th:text="${appointment['id']}">[12345]</span><br>
                     <span class="titlename">顾客姓名：</span>

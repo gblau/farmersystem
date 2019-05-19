@@ -3,6 +3,7 @@ package com.gblau.controller.farmer;
 import com.gb.common.model.po.Appointment;
 import com.gb.common.model.po.Order;
 import com.gb.common.util.Log;
+import com.gblau.controller.base.BaseController;
 import com.gblau.service.AppointmentService;
 import com.gblau.service.OrderService;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -18,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @RestController
 @RequestMapping("/farmer")
-public class TransactionController {
+public class TransactionController extends BaseController {
     @Autowired
     private OrderService orderService;
     @Autowired

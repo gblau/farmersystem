@@ -107,29 +107,31 @@
         </p>
     </div>
     <div class="buy" id="buy">
-        <form method="" action="">
+        <form th:action="@{/shop/addOrder}" method="post">
             <p>订单填写</p>
-            <label style="font-size:22px;">收件人姓名</label>
-            <input id="name" type="text" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+            <input id="name" name="name" th:value="${good.name}" type="hidden" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
                      #484948;color:#050505;"><br><br>
+            <input id="userId" name="userId" th:value="${session.currentUser.id}" type="hidden" >
+            <input id="storeId" name="storeId" value="3" type="hidden" >
+            <input id="goodId" name="goodId" th:value="${good.id}" type="hidden" >
             <label style="font-size:22px;">电话号码</label>
-            <input id="userTel" type="tel" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+            <input id="userTel" name="phone" type="tel" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
                     #484948;color:#050505;"><br><br>
             <label style="font-size:22px;">收件地址</label>
-            <input id="userAddress" type="text" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+            <input id="userAddress" name="address" type="text" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
                     #484948;color:#050505;"><br><br>
             <label style="font-size:22px;">购买数量</label>
-            <input id="number" type="text" style="text-indent:8px;width:100px;height:30px;border-radius:6px;border:1.2px solid
+            <input id="number" name="num" type="text"
+                   style="text-indent:8px;width:100px;height:30px;border-radius:6px;border:1.2px solid
                     #484948;color:#050505;">&nbsp;&nbsp;
-            <span style="font-size:22px;color:red;">库存：【 】</span><br><br>
-            <label style="font-size:22px;">交易金额为：【由价格与所填数量计算动态得出】</label>
+            <span style="font-size:22px;color:red;">库存：<span th:text="${good.stock}"></span></span><br><br>
+            <span th:text="${error}" style="font-size:22px;color:red;"></span><br><br>
             <br><br><br>
             <input type="submit" style="font-size:25px;font-weight:bold;width:100px;height:30px; background-color:#57ac6c;
                         border-radius:5px;color:#f5f8f6;font-size:18px;border:none;" value="提 交">
             <br><br><br><br><br>
         </form>
     </div>
-
 </body>
 
 </html>

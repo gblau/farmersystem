@@ -31,7 +31,7 @@
         <ul th:each="good:${goods}">
             <li>
                 <hgroup>
-                    <a th:href="@{/shop/amin11}"><h2 th:text="${good.name}"></h2></a>
+                    <a th:href="@{'/shop/amin11?goodId='+${good.id}}"><h2 th:text="${good.name}"></h2></a>
                     <h2>肉质鲜嫩 品质上乘</h2>
                     <h2>欢迎选购</h2>
                 </hgroup>

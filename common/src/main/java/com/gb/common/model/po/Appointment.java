@@ -1,5 +1,7 @@
 package com.gb.common.model.po;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Appointment {
@@ -25,6 +27,7 @@ public class Appointment {
      *
      * @mbggenerated Thu May 16 17:34:09 CST 2019
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date arrivalTime;
 
     /**
@@ -163,7 +166,7 @@ public class Appointment {
      *
      * @mbggenerated Thu May 16 17:34:09 CST 2019
      */
-    public Byte getIsAccepted() {
+    public Byte isAccepted() {
         return isAccepted;
     }
 

@@ -69,13 +69,16 @@ public class FarmerController {
             map.put("num", order.getNum());
 
             User user = userService.findByPrimaryKey(order.getUserId());
-
             if (user != null) {
                 map.put("customerName", user.getUsername());
                 map.put("customerPhone", user.getPhone());
                 map.put("customerAddress", user.getAddress());
             }
-            if (order.getIsAccepted() == 0)
+
+            Good good = goodService.findByPrimaryKey(order.getGoodId());
+            map.put("image", good.getImage());
+
+            if (new Byte("0").equals(order.isAccepted()))
                 notAcceptedOrder.add(map);
             else
                 acceptedOrder.add(map);
@@ -99,13 +102,17 @@ public class FarmerController {
             map.put("person", appointment.getAppPerson());
 
             User user = userService.findByPrimaryKey(appointment.getUserId());
-
             if (user != null) {
                 map.put("customerName", user.getUsername());
                 map.put("customerPhone", user.getPhone());
                 map.put("customerAddress", user.getAddress());
             }
-            if (appointment.getIsAccepted() == 0)
+
+            Town town = townService.findByPrimaryKey(appointment.getTownId());
+            if (town != null)
+                map.put("image", town.getImage());
+
+            if (new Byte("0").equals(appointment.isAccepted()))
                 notAccepted.add(map);
             else
                 accepted.add(map);

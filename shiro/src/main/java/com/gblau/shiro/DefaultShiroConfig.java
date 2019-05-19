@@ -77,7 +77,8 @@ public class DefaultShiroConfig {
          * authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter
          */
         Map<String, String> chains = new HashMap<>();
-        //chains.put("/**","authc");
+        chains.put("/farmer/*","authc");
+        chains.put("/customer/*","authc");
         chains.put("/logout", "anon");
         chains.put("/login", "anon");
         chains.put("/regist", "anon");

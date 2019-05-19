@@ -68,7 +68,7 @@
         <span>优质火鸡</span><br>
         <span>阿敏造</span><br>
         <span>想要品尝？马上<a href="#buy">购买</a></span><br><br>
-        <span style="color:red;font-size:28px;font-family:黑体;font-weight:bold;margin-left:500px;">价格：【】元/只（约重5kg）</span>
+        <span style="color:red;font-size:28px;font-family:黑体;font-weight:bold;margin-left:500px;">价格：<span th:text="${good.price}"></span>元/只（约重5kg）</span>
     </div>
     <div class="box" id="box">
         <div class="box1">
@@ -103,27 +103,29 @@
             <br>欣赏珍禽在此争奇斗艳回归自然的景象，
             <br>还可以在此品尝到我们的珍禽制品，
             <br>观摩烹饪过程。<br>如果您对我们的农庄有兴趣，
-            <br>还可以进入我们的<a href="amin01F.html">农庄</a>体验农庄风情！
+            <br>还可以进入我们的<a th:href="@{/shop/amin01F}">农庄</a>体验农庄风情！
         </p>
     </div>
     <div class="buy" id="buy">
-        <form method="" action="">
+        <form th:action="@{/shop/addOrder}" method="post">
             <p>订单填写</p>
-            <label style="font-size:22px;">收件人姓名</label>
-            <input id="name" type="text" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+            <input id="name" name="name" th:value="${good.name}" type="hidden" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
                      #484948;color:#050505;"><br><br>
+            <input id="userId" name="userId" th:value="${session.currentUser.id}" type="hidden" >
+            <input id="storeId" name="storeId" value="1" type="hidden" >
+            <input id="goodId" name="goodId" th:value="${good.id}" type="hidden" >
             <label style="font-size:22px;">电话号码</label>
-            <input id="userTel" type="tel" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+            <input id="userTel" name="phone" type="tel" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
                     #484948;color:#050505;"><br><br>
             <label style="font-size:22px;">收件地址</label>
-            <input id="userAddress" type="text" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
+            <input id="userAddress" name="address" type="text" style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
                     #484948;color:#050505;"><br><br>
             <label style="font-size:22px;">购买数量</label>
-            <input id="number" type="text"
+            <input id="number" name="num" type="text"
                 style="text-indent:8px;width:100px;height:30px;border-radius:6px;border:1.2px solid
                     #484948;color:#050505;">&nbsp;&nbsp;
-            <span style="font-size:22px;color:red;">库存：【 】</span><br><br>
-             <label style="font-size:22px;">交易金额为：【由价格与所填数量计算动态得出】</label>
+            <span style="font-size:22px;color:red;">库存：<span th:text="${good.stock}"></span></span><br><br>
+            <span th:text="${error}" style="font-size:22px;color:red;"></span><br><br>
             <br><br><br>
             <input type="submit" style="font-size:25px;font-weight:bold;width:100px;height:30px; background-color:#57ac6c;
                         border-radius:5px;color:#f5f8f6;font-size:18px;border:none;" value="提 交">

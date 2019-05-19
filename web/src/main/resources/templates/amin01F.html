@@ -114,28 +114,24 @@
             </p>
          </div>
         <div class="appointment" id="appointment">
-            <form method="" action="">
+            <form th:action="@{/addAppointment}" method="post">
                 <p>预约单填写</p>
-                    <label style="font-size:22px;">真实姓名</label>
-                    <input id="name" type="text" 
+                    <input id="name" type="hidden" name="userId" th:value="${session.currentUser.id}"
                      style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
                      #484948;color:#050505;"><br><br>
-                    <label style="font-size:22px;">电话号码</label>
-                    <input id="userTel" type="tel"
-                    style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
-                    #484948;color:#050505;"><br><br>
                     <label style="font-size:22px;">应到时间</label>
-                    <input id="arrivalTime" type="date" 
+                    <input id="arrivalTime" type="date" name="arrivalTime"
                     style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
                     #484948;color:#050505;"><br><br>
                     <label style="font-size:22px;">预约人数</label>
-                    <input id="appPerson" type="text"
+                    <input id="appPerson" type="text" name="appPerson"
                         style="text-indent:8px;width:100px;height:30px;border-radius:6px;border:1.2px solid
                     #484948;color:#050505;">&nbsp;&nbsp;
-                    <span style="font-size:22px;color:red;">剩余可预约人数：【 】</span>
+                <span style="font-size:22px;color:red;">最多可以预约<span th:text="${maxPerson}"></span></span>
                     <br><br><br>
                     <input type="submit" style="font-size:25px;font-weight:bold;width:100px;height:30px; background-color:#57ac6c;
                         border-radius:5px;color:#f5f8f6;font-size:18px;border:none;" value="提 交">
+                <span th:text="${message}"></span>
                     <br><br><br><br><br>
             </form>
         </div>

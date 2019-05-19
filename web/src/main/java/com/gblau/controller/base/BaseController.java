@@ -1,13 +1,18 @@
 package com.gblau.controller.base;
 
 import com.gb.common.util.Log;
+import com.gblau.common.AppConstant;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.net.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -17,6 +22,23 @@ import java.util.List;
  */
 public class BaseController {
     protected static Logger log = Log.get(BaseController.class);
+
+
+    protected String uploadFile(MultipartFile file, HttpServletRequest request) throws IOException {
+        // 获取上传时的文件名
+        String originalFilename = file.getOriginalFilename();
+
+        // 获取文件后缀名 .XX
+        String fileSuffix = originalFilename.substring(originalFilename.lastIndexOf("."));
+        // TODO 新文件名
+        String newFileName = Calendar.getInstance().getTimeInMillis() + fileSuffix;
+        // 生成网络访问地址
+        String fileUrl = AppConstant.FILE_URL + newFileName;
+
+        // 生成新文件路径
+        Files.write(Paths.get(AppConstant.FILE_PATH + newFileName), file.getBytes());
+        return fileUrl;
+    }
 
     /**
      * 通过抛出异常的方式校验

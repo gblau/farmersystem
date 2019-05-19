@@ -47,8 +47,12 @@ public class UserController extends BaseController {
 
     /**
      * http://localhost:8080/login/validate
-     * 登录用户接口。
-     * @param currentUser
+     * 登陆接口
+     *
+     * @param modelAndView 返回视图
+     * @param currentUser 输入的用户信息
+     * @param bindingResult 格式绑定
+     * @param session 后台session对象
      * @return
      */
     @PostMapping("/login")

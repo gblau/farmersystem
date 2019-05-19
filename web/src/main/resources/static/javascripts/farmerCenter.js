@@ -36,10 +36,11 @@ function add() {
         +".des{height:35px;width:295px;border-radius:3px;border:1.2px solid #484948;color:#050505;text-indent:3px;}"
         +"</style>"
         +"<td><input class='name' type='text' name='name'/></td>"
-        +"<td><input class='maxPerson' type='text' name='stock'/></td>"
+        +"<td><input class='maxPerson' type='text' name='maxPerson'/></td>"
         +"<td><input class='address' name='address'/></td>"
-        +"<td><input class='introduction' type='text' name='description'/></td>"
-        +"<td><input type='submit' value='提 交'/><input type='button' value=' 删 除 ' onclick='del(this)'></td>";
+        +"<td><input class='stock' type='text' name='introduction'/></td>"
+        +"<td><input type='file' name='file' value='上传图片'/></td>"
+        +"<td><input type='submit' value=' 提 交 '/><input type='button' value=' 删 除 ' onclick='del(this)'></td>";
 
         document.getElementById("tb").appendChild(trObj);
     }
@@ -63,7 +64,7 @@ function add01() {
         "<td><input class='in' type='text' name='price'/></td>" +
         "<td><input class='in' type='text' name='stock'/></td>" +
         "<td><input class='description' name='description'/></td>" +
-        "<td><input class='in' type='image' name='image'/></td>" +
+        "<td><input class='in' type='file' name='file' value='上传图片'/></td>" +
         "<td><input type='button' value=' 删 除 ' onclick='del01(this)'></td>";
 
     document.getElementById("tb01").appendChild(trObj);

@@ -201,7 +201,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectAll" parameterType="String" resultType="com.gb.common.model.po.Town">
+  <select id="selectAll" parameterType="String" resultMap="BaseResultMap">
         SELECT * FROM town;
     </select>
 </mapper>

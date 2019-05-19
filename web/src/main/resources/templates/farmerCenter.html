@@ -33,23 +33,25 @@
         <div class="right">
             <!-- 我的农庄 -->
             <div id="Button1" style="display:none">
-                <form th:action="@{/farmer/addTown}" method="post" >
+                <form th:action="@{/farmer/addTown}" method="post" enctype="multipart/form-data">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th width="10%">体验项目</th>
-                                <th width="10%">剩余名额</th>
-                                <th width="45%">地址</th>
+                                <th width="10%">总名额</th>
+                                <th width="35%">地址</th>
                                 <th width="25%">简介</th>
+                                <th width="10%">图片</th>
                                 <th width="10%"><input type="button" value="单击添加项.." onclick="add()"> </th>
                             </tr>
                         <thead>
                         <tbody id="tb" style="text-align:center">
                         <tr th:each="town : ${towns}">
-                            <td th:text="${town.id}"><input name="townId" th:value="${town.id}" type="hidden"></td>
-                            <td th:text="${town.name}"></td>
+                            <td th:text="${town.name}"><input name="townId" th:value="${town.id}" type="hidden"></td>
                             <td th:text="${town.maxPerson}"></td>
                             <td th:text="${town.address}"></td>
+                            <td th:text="${town.introduction}"></td>
+                            <td><img th:src="@{${town.image}}" height="100" width="100"/></td>
                             <td><input type='button' value=' 删 除 ' th:onclick="'window.location.href = \'' + @{/farmer/deleteTown(townId=${town.id})} + '\''"/></td>
                         </tr>
                         </tbody>
@@ -59,7 +61,7 @@
 
             <!-- 我的店铺 -->
             <div id="Button2" style="display:none">
-                <form th:action="@{/farmer/addGood}" method="post">
+                <form th:action="@{/farmer/addGood}" method="post" enctype="multipart/form-data">
                    <table class="table">
                         <thead>
                             <tr>
@@ -77,6 +79,7 @@
                            <td th:text="${good.price}"></td>
                            <td th:text="${good.stock}"></td>
                            <td th:text="${good.description}"></td>
+                           <td><img th:src="@{${good.image}}" height="100" width="100"/></td>
                            <td><input type='button' value=' 删 除 ' th:onclick="'window.location.href = \'' + @{/farmer/deleteGood(goodId=${good.id})} + '\''"/></td>
                        </tr>
                        </tbody>

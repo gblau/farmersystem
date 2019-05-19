@@ -1,10 +1,8 @@
 package com.gblau.controller.customer;
 
-import com.gb.common.model.po.Appointment;
-import com.gb.common.model.po.Order;
-import com.gb.common.model.po.Town;
-import com.gb.common.model.po.User;
+import com.gb.common.model.po.*;
 import com.gblau.service.AppointmentService;
+import com.gblau.service.GoodService;
 import com.gblau.service.OrderService;
 import com.gblau.service.TownService;
 import com.gblau.service.authorization.UserService;
@@ -35,6 +33,8 @@ public class CustomerController {
     private UserService userService;
     @Autowired
     private TownService townService;
+    @Autowired
+    private GoodService goodService;
 
     @RequiresRoles("customer")
     @GetMapping("/home")
@@ -54,16 +54,20 @@ public class CustomerController {
             map.put("num", order.getNum());
 
             User user = userService.findByPrimaryKey(order.getUserId());
-
             if (user != null) {
                 map.put("customerName", user.getUsername());
                 map.put("customerPhone", user.getPhone());
                 map.put("customerAddress", user.getAddress());
             }
-            if (order.getIsAccepted() == 0)
-                map.put("state", "审核中");
-            else
+            Good good = goodService.findByPrimaryKey(order.getGoodId());
+            map.put("image", good.getImage());
+
+            if (new Byte("1").equals(order.isAccepted()))
                 map.put("state", "已完成");
+            else if (new Byte("0").equals(order.isAccepted()))
+                map.put("state", "审核中");
+            else if (new Byte("2").equals(order.isAccepted()))
+                map.put("state", "已回绝");
             maps.add(map);
         }
         modelAndView.addObject("orders", maps);
@@ -86,11 +90,15 @@ public class CustomerController {
                 map.put("townAddress", town.getAddress());
                 map.put("townName", town.getName());
                 map.put("townPhone", town.getPhone());
+                map.put("image", town.getImage());
             }
-            if (appointment.getIsAccepted() == 0)
+
+            if (new Byte("0").equals(appointment.isAccepted()))
                 map.put("state", "待访问");
-            else
+            else if (new Byte("1").equals(appointment.isAccepted()))
                 map.put("state", "已使用");
+            else if (new Byte("2").equals(appointment.isAccepted()))
+                map.put("state", "已回绝");
             maps.add(map);
         }
         modelAndView.addObject("appointments", maps);
