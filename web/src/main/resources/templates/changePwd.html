@@ -46,20 +46,20 @@
      
     <body>
         <p>修改密码</p>
-        <form action="" method="post">
+        <form th:action="@{/changePwd}" method="post">
             <div class="mycenter">
                 <div class="mysign">
                     <div class="col-lg-10">
                         <input type="text" id="userName" class="form-control" name="username" placeholder="请输入账号" required autofocus/>
                     </div>
                     <div class="col-lg-10">
-                        <input type="text" id="userTel" class="form-control" name="password" placeholder="请输入手机号" required autofocus/>
+                        <input type="text" id="userTel" class="form-control" name="phone" placeholder="请输入手机号" required autofocus/>
                     </div>
                     <div class="col-lg-10">
                         <input type="password" id="newPwd" class="form-control" name="password" placeholder="请输入新密码" required autofocus/>
                     </div>
                     <div class="col-lg-10">
-                            <input type="password" id="newPwd2" class="form-control" name="password" placeholder="请再次输入新密码" required autofocus/>
+                            <input type="password" id="newPwd2" class="form-control" name="secondPwd" placeholder="请再次输入新密码" required autofocus/>
                     </div>
                     <br>
                     <div id="error_box"><br></div>

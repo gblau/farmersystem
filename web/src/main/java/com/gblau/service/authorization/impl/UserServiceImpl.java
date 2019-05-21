@@ -1,6 +1,7 @@
 package com.gblau.service.authorization.impl;
 
 import com.gb.common.model.po.User;
+import com.gb.common.util.SqlSearchUtil;
 import com.gblau.service.authorization.UserService;
 import com.gblau.service.base.impl.BaseServiceImpl;
 import com.gblau.engine.mapper.UserMapper;
@@ -40,5 +41,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     @Override
     public List<User> findAllUsers() {
         return dao.selectAll();
+    }
+
+    @Override
+    public List<User> findUsersByUsername(String input) {
+        return dao.selectUsersByUsername(SqlSearchUtil.getFuzzyQueryString(input));
     }
 }

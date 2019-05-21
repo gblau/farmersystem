@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +36,8 @@ public class FarmerController {
     private AppointmentService appointmentService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private HttpSession session;
 
     @RequiresRoles("farmer")
     @GetMapping("/home")
@@ -46,9 +49,21 @@ public class FarmerController {
     @RequiresRoles("farmer")
     @GetMapping("/farmerCenter")
     public ModelAndView farmerCenter(ModelAndView modelAndView){
-        List<Town> towns = townService.findAllElements();
-        List<Store> stores = storeService.findAllElements();
-        List<Good> goods = goodService.findAllElements();
+        User user  = (User) session.getAttribute("currentUser");
+        List<Town> towns = townService.fingByUserId(user.getId());
+        Integer storeId = 1;
+        if (user.getId() == 20)
+            storeId = 1;
+        if (user.getId() == 18)
+            storeId = 2;
+        if (user.getId() == 19)
+            storeId = 3;
+        if (user.getId() == 17)
+            storeId = 4;
+        List<Good> goods = goodService.findByStore(storeId);
+        Store store = storeService.findByPrimaryKey(storeId);
+        List<Store> stores = new ArrayList<>();
+        stores.add(store);
         modelAndView.setViewName("farmerCenter");
         modelAndView.addObject("towns", towns);
         modelAndView.addObject("stores", stores);
@@ -77,6 +92,13 @@ public class FarmerController {
 
             Good good = goodService.findByPrimaryKey(order.getGoodId());
             map.put("image", good.getImage());
+
+            if (new Byte("1").equals(order.isAccepted()))
+                map.put("state", "已完成");
+            else if (new Byte("0").equals(order.isAccepted()))
+                map.put("state", "审核中");
+            else if (new Byte("2").equals(order.isAccepted()))
+                map.put("state", "已回绝");
 
             if (new Byte("0").equals(order.isAccepted()))
                 notAcceptedOrder.add(map);
@@ -112,6 +134,14 @@ public class FarmerController {
             if (town != null)
                 map.put("image", town.getImage());
 
+
+            if (new Byte("0").equals(appointment.isAccepted()))
+                map.put("state", "待访问");
+            else if (new Byte("1").equals(appointment.isAccepted()))
+                map.put("state", "已使用");
+            else if (new Byte("2").equals(appointment.isAccepted()))
+                map.put("state", "已回绝");
+
             if (new Byte("0").equals(appointment.isAccepted()))
                 notAccepted.add(map);
             else
@@ -122,6 +152,11 @@ public class FarmerController {
         modelAndView.addObject("acceptedAppointments", accepted);
     }
 
+    /**
+     * 构造transaction视图
+     * @param modelAndView
+     * @return
+     */
     @RequiresRoles("farmer")
     @GetMapping("/transaction")
     public ModelAndView transaction(ModelAndView modelAndView){

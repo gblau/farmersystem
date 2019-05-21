@@ -49,6 +49,14 @@
     </head>
 
     <body>
+    <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'"
+         style="width:22%;margin:1px;border-radius:15px;background:url(../images/searchboxBG.jpg);background-repeat:no-repeat;background-size:100% 100%;">
+        <form th:action="@{/find}" method="post">
+            <input id="searchText" placeholder=" 输入查询内容" type="text" name="input" style="text-indent:8px"/>
+            <input id="findBtn" type="submit" value="查 询" style="font-weight: bold;" />
+        </form>
+        <div id="contentsContainer"></div>
+    </div>
         <div style="text-align:center;margin:30px;">
                 <table class="table" id="myTable">
                     <thead>

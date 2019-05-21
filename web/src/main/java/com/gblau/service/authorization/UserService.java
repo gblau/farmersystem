@@ -14,4 +14,5 @@ public interface UserService extends BaseService<User> {
     Set<String> findRoles(String username);
     Set<String> findPermissions(String username);
     List<User> findAllUsers();
+    List<User> findUsersByUsername(String input);
 }

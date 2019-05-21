@@ -87,7 +87,7 @@
             <!-- 已处理订单 -->
             <div id="Button3" style="display:none;">
                 <div class="doneOrder" th:each="order:${acceptedOrders}" style="margin:10px;border-bottom:1px solid rgb(104, 180, 174);">
-                    <img src="../images/caomei01.jpg" alt="无法加载"/>
+                    <img th:src="@{${order['image']}}" width="100" height="100" alt="无法加载"/>
                     <span class="titlename">订单编号：</span>
                     <span class="con" th:text="${order['id']}"></span><br>
                     <span class="titlename">商品名称：</span>
@@ -100,6 +100,8 @@
                     <span class="con" th:text="${order['customerPhone']}"></span><br>
                     <span class="titlename">买家地址：</span>
                     <span class="con" th:text="${order['customerAddress']}"></span><br>
+                    <span class="titlename">处理状态：</span>
+                    <span class="con" th:text="${order['state']}"></span><br>
                 </div>
             </div>
 

@@ -33,6 +33,12 @@ public class ShopController {
     @Autowired
     private TownService townService;
 
+    /**
+     * 添加订单
+     * @param modelAndView
+     * @param order
+     * @return
+     */
     @PostMapping("addOrder")
     public ModelAndView addOrder(ModelAndView modelAndView, Order order) {
         Good good = goodService.findByPrimaryKey(order.getGoodId());

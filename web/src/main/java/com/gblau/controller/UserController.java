@@ -104,6 +104,11 @@ public class UserController extends BaseController {
         return modelAndView;
     }
 
+    /**
+     * 注册视图
+     * @param modelAndView
+     * @return
+     */
     @GetMapping("/regist")
     public ModelAndView regist(ModelAndView modelAndView){
         modelAndView.setViewName("register");
@@ -111,6 +116,15 @@ public class UserController extends BaseController {
         return modelAndView;
     }
 
+    /**
+     * 注册接口
+     * @param modelAndView
+     * @param currentUser
+     * @param secondPassword
+     * @param roleid
+     * @param bindingResult
+     * @return
+     */
     @PostMapping("/regist")
     @Transactional
     public ModelAndView doRegist(ModelAndView modelAndView, @Valid User currentUser, String secondPassword, String roleid, BindingResult bindingResult) {
@@ -153,6 +167,13 @@ public class UserController extends BaseController {
         return modelAndView;
     }
 
+    /**
+     * 更新用户信息
+     * @param modelAndView
+     * @param user
+     * @param session
+     * @return
+     */
     @PostMapping("/updateUser")
     @RequiresAuthentication
     public ModelAndView updateUser(ModelAndView modelAndView, User user, HttpSession session) {
@@ -171,9 +192,46 @@ public class UserController extends BaseController {
         return modelAndView;
     }
 
+    /**
+     * 修改密码
+     * @param modelAndView
+     * @return
+     */
     @GetMapping("/changepwd")
     public ModelAndView changePwd(ModelAndView modelAndView){
         modelAndView.setViewName("changePwd");
+        return modelAndView;
+    }
+
+    @PostMapping("/find")
+    public ModelAndView findUser(ModelAndView modelAndView, String input) {
+        modelAndView.addObject("users", userService.findUsersByUsername(input));
+        modelAndView.setViewName("adminstratorHome");
+        return modelAndView;
+    }
+
+
+    @PostMapping("/changepwd")
+    public ModelAndView changePassword(ModelAndView modelAndView, User user, String secondPwd){
+
+        User tempUser = userService.findUserByUsername(user.getUsername());
+        if (tempUser == null) {
+            modelAndView.addObject("error", "没有这个用户");
+            modelAndView.setViewName("redirect:changepwd");
+            return modelAndView;
+        }
+
+        if (!tempUser.getPhone().equals(user.getPhone())) {
+            modelAndView.addObject("error", "手机号不对");
+            modelAndView.setViewName("redirect:changepwd");
+            return modelAndView;
+        }
+
+        user.setId(tempUser.getId());
+        userService.updateByPrimaryKeySelective(user);
+
+        modelAndView.addObject("error", "密码修改成功");
+        modelAndView.setViewName("redirect:login");
         return modelAndView;
     }
 

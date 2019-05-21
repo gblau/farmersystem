@@ -205,4 +205,8 @@
     <select id="selectAll" parameterType="String" resultType="com.gb.common.model.po.User">
         SELECT * FROM user;
     </select>
+
+    <select id="selectUsersByUsername" parameterType="String" resultType="com.gb.common.model.po.User">
+        SELECT * FROM user where username LIKE #{input};
+    </select>
 </mapper>

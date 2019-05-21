@@ -204,4 +204,8 @@
   <select id="selectAll" parameterType="String" resultMap="BaseResultMap">
         SELECT * FROM town;
     </select>
+
+  <select id="selectByUserId" parameterType="Integer" resultMap="BaseResultMap">
+        SELECT * FROM town where user_id=#{id};
+    </select>
 </mapper>
