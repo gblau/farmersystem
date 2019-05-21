@@ -68,6 +68,8 @@ public class CustomerController {
                 map.put("state", "审核中");
             else if (new Byte("2").equals(order.isAccepted()))
                 map.put("state", "已回绝");
+            else if (new Byte("4").equals(order.isAccepted()))
+                map.put("state", "已取消");
             maps.add(map);
         }
         modelAndView.addObject("orders", maps);
@@ -99,6 +101,8 @@ public class CustomerController {
                 map.put("state", "已使用");
             else if (new Byte("2").equals(appointment.isAccepted()))
                 map.put("state", "已回绝");
+            else if (new Byte("4").equals(appointment.isAccepted()))
+                map.put("state", "已取消");
             maps.add(map);
         }
         modelAndView.addObject("appointments", maps);

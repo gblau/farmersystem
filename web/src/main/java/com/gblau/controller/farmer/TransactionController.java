@@ -6,6 +6,7 @@ import com.gb.common.util.Log;
 import com.gblau.controller.base.BaseController;
 import com.gblau.service.AppointmentService;
 import com.gblau.service.OrderService;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class TransactionController extends BaseController {
     private AppointmentService appointmentService;
 
     @GetMapping("/updateOrder")
-    @RequiresRoles("farmer")
+    @RequiresAuthentication
     public ModelAndView updateOrder(ModelAndView modelAndView, Order order) {
         Log.warn("更新订单：{}", order);
         orderService.updateByPrimaryKeySelective(order);

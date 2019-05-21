@@ -40,12 +40,12 @@ public class ShopController {
      * @return
      */
     @PostMapping("addOrder")
-    public ModelAndView addOrder(ModelAndView modelAndView, Order order) {
+    public ModelAndView addOrder(ModelAndView modelAndView, Order order, String viewname) {
         Good good = goodService.findByPrimaryKey(order.getGoodId());
         modelAndView.addObject("good", good);
 
         if (order.getNum() != null && good.getStock() < order.getNum()) {
-            modelAndView.setViewName("amin01-1");
+            modelAndView.setViewName(viewname);
             modelAndView.addObject("error", "库存不足购买数量！");
             return modelAndView;
         }
@@ -54,7 +54,7 @@ public class ShopController {
         order.setGoodId(good.getId());
         orderService.insertSelective(order);
         modelAndView.addObject("error", "购买成功！");
-        modelAndView.setViewName("amin01-1");
+        modelAndView.setViewName(viewname);
         return modelAndView;
     }
 

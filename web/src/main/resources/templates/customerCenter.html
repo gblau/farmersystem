@@ -58,6 +58,9 @@
                         <span class="con" th:text="${order['customerPhone']}">[300元]</span><br>
                         <span class="titlename">订单状态：</span>
                         <span class="con" th:text="${order['state']}">[已完成]</span><br>
+                        <div class="process" th:switch="${order['state']}" style="text-align:center;">
+                            <input  th:case="'审核中'" type="button" value="取 消" th:onclick="'window.location.href = \'' + @{/farmer/cancelOrder(id=${order['id']}, isAccepted=4)} + '\''">
+                        </div>
                     </div>
                 </div>             
             </div>

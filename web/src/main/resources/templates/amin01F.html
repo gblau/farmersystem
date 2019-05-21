@@ -116,6 +116,7 @@
         <div class="appointment" id="appointment">
             <form th:action="@{/addAppointment}" method="post">
                 <p>预约单填写</p>
+                    <input name="viewname" value="amin01F" type="hidden">
                     <input id="name" type="hidden" name="userId" th:value="${session.currentUser.id}"
                      style="text-indent:8px;width:300px;height:30px;border-radius:6px;border:1.2px solid
                      #484948;color:#050505;"><br><br>
